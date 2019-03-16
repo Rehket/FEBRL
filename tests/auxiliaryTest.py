@@ -203,13 +203,13 @@ class TestCase(unittest.TestCase):
     def testIsSet(self):  # - - - - - - - - - - - - - - - - - - - - - - - - - - -
         """Test 'check_is_set' function."""
 
-        assert auxiliary.check_is_set("TestArgument", sets.Set())
-        assert auxiliary.check_is_set("TestArgument", sets.Set([1, 2, 3]))
-        assert auxiliary.check_is_set("TestArgument", sets.Set(["a", "a"]))
+        assert auxiliary.check_is_set("TestArgument", set())
+        assert auxiliary.check_is_set("TestArgument", {1, 2, 3})
+        assert auxiliary.check_is_set("TestArgument", {"a", "a"})
 
         assert auxiliary.check_is_set("TestArgument", set())
-        assert auxiliary.check_is_set("TestArgument", set([1, 2, 3]))
-        assert auxiliary.check_is_set("TestArgument", set(["a", "a"]))
+        assert auxiliary.check_is_set("TestArgument", {1, 2, 3})
+        assert auxiliary.check_is_set("TestArgument", {"a", "a"})
 
     def testIsTuple(self):  # - - - - - - - - - - - - - - - - - - - - - - - - - -
         """Test 'check_is_tuple' function."""
