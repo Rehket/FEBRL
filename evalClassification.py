@@ -90,7 +90,7 @@ do_ffirst = True
 do_tailor = True
 do_two_step_thres = True
 do_two_step_near = True
-do_timing = Truee
+do_timing = True
 
 # File name for writing results to (incl. date and time)
 #
