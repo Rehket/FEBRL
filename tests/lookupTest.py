@@ -128,7 +128,7 @@ class TestCase(unittest.TestCase):
              'Look-up table "'+f+'" has illegal key length: '+ \
              str(lookup_table.max_key_length)
 
-      for (key,value) in lookup_table.items():
+      for (key,value) in list(lookup_table.items()):
         assert (isinstance(key,tuple)), \
                'Key in look-up table "'+f+'" is not a tuple: '+str(key)
         assert (len(value) == 2), \
@@ -168,7 +168,7 @@ class TestCase(unittest.TestCase):
            'Combined look-up table has illegal key length: '+ \
            str(lookup_table.max_key_length)
 
-    for (key,value) in lookup_table.items():
+    for (key,value) in list(lookup_table.items()):
       assert (isinstance(key,tuple)), \
              'Key in combined look-up table is not a tuple: '+str(key)
       assert (len(value) == 2), \
@@ -217,7 +217,7 @@ class TestCase(unittest.TestCase):
              'Look-up table "'+f+'" returns wrond default: '+ \
              lookup_table.default
 
-      for (key,value) in lookup_table.items():
+      for (key,value) in list(lookup_table.items()):
         assert (isinstance(key,str)), \
                'Key in look-up table "'+f+'" is not a string: '+str(key)
         assert (isinstance(value,int) and (value > 0)), \
@@ -259,7 +259,7 @@ class TestCase(unittest.TestCase):
            'Combined look-up table returns wrond default: '+ \
            lookup_table.default
 
-    for (key,value) in lookup_table.items():
+    for (key,value) in list(lookup_table.items()):
       assert (isinstance(key,str)), \
              'Key in combined look-up table is not a string: '+str(key)
       assert (isinstance(value,int) and (value > 0)), \
@@ -298,7 +298,7 @@ class TestCase(unittest.TestCase):
              'Look-up table "'+f+'" returns wrond default: '+ \
              lookup_table.default
 
-      for (key,value) in lookup_table.items():
+      for (key,value) in list(lookup_table.items()):
         assert (isinstance(key,str)), \
                'Key in look-up table "'+f+'" is not a string: '+str(key)
         assert (len(value) == 2) and \
@@ -342,7 +342,7 @@ class TestCase(unittest.TestCase):
            'Combined look-up table returns wrond default: '+ \
            lookup_table.default
 
-    for (key,value) in lookup_table.items():
+    for (key,value) in list(lookup_table.items()):
       assert (isinstance(key,str)), \
              'Key in combined look-up table is not a string: '+str(key)
       assert (len(value) == 2) and \

@@ -676,7 +676,7 @@ class TestCase(unittest.TestCase):
 
 #    rs.standardise()  # Use record standardiser and write output file
 
-    print 'Count dict:', ns.count_dict
+    print('Count dict:', ns.count_dict)
 
   # Now another name standardiser that assumes surnames before given names - -
   #
@@ -714,7 +714,7 @@ class TestCase(unittest.TestCase):
 #             'Wrong surname first standardisation: %s, should be: %s' % \
 #             (str(test_name_res), str(name_res))
 
-    print 'Count dict:', ns.count_dict
+    print('Count dict:', ns.count_dict)
 
 #    rs.standardise()  # Use record standardiser and write output file
 

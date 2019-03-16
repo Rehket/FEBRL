@@ -1839,14 +1839,14 @@ class TestCase(unittest.TestCase):
 
     # Create a list of 60 integers, each value 6 times
     #
-    int_list_short = range(1000,1010)  # List of 10 integers
+    int_list_short = list(range(1000,1010))  # List of 10 integers
     rec_values_list_short1 = int_list_short[:] * 6
     rec_values_list_short2 = int_list_short[:] * 6
     rec_values_list_short2.reverse()
 
     # Create a list of 500 integers, each value 10 times
     #
-    int_list_long =  range(2050,2100)  # List of 50 integers
+    int_list_long =  list(range(2050,2100))  # List of 50 integers
     rec_values_list_long1 = int_list_long[:] * 10
     rec_values_list_long1.reverse()
     rec_values_list_long2 = int_list_long[:] * 10

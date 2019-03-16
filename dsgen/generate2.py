@@ -538,7 +538,7 @@ state_dict = {'name':'state',
 dob_dict = {'name':'date_of_birth',
             'type':'date',
       'char_range':'digit',
-      'start_date':(01,01,1900),
+      'start_date':(0o1,0o1,1900),
         'end_date':(31,12,1999),
      'select_prob':0.05,
      'depend_prob':1.00,  # Depends on age
@@ -907,7 +907,7 @@ def first_day_of_year(year):
   """
 
   if (year == 0):
-    print 'Error: A year value of 0 is not possible'
+    print('Error: A year value of 0 is not possible')
     raise Exception
 
   elif (year < 0):
@@ -972,9 +972,9 @@ def epoch_to_date(daynum):
     [day, month, year] = epoch_to_date(37734)  # returns ['25','04','2003']
   """
 
-  if (not (isinstance(daynum, int) or isinstance(daynum, long))):
-    print 'Error: Input value for "daynum" is not of integer type: %s' % \
-          (str(daynum))
+  if (not (isinstance(daynum, int) or isinstance(daynum, int))):
+    print('Error: Input value for "daynum" is not of integer type: %s' % \
+          (str(daynum)))
     raise Exception
 
   if (daynum >= -115860):
@@ -1054,36 +1054,36 @@ def date_to_epoch(day, month, year):
   try:
     day_int = int(day)
   except:
-    print 'Error: "day" value is not an integer'
+    print('Error: "day" value is not an integer')
     raise Exception
   try:
     month_int = int(month)
   except:
-    print 'Error: "month" value is not an integer'
+    print('Error: "month" value is not an integer')
     raise Exception
   try:
     year_int = int(year)
   except:
-    print 'Error: "year" value is not an integer'
+    print('Error: "year" value is not an integer')
     raise Exception
 
   # Test if values are within range
   #
   if (year_int <= 1000):
-    print 'Error: Input value for "year" is not a positive integer ' + \
-          'number: %i' % (year)
+    print('Error: Input value for "year" is not a positive integer ' + \
+          'number: %i' % (year))
     raise Exception
 
   leap_year_flag = is_leap_year(year_int)
 
   if (month_int <= 0) or (month_int > 12):
-    print 'Error: Input value for "month" is not a possible day number: %i' % \
-          (month)
+    print('Error: Input value for "month" is not a possible day number: %i' % \
+          (month))
     raise Exception
 
   if (day_int <= 0) or (day_int > days_in_month[leap_year_flag][month_int-1]):
-    print 'Error: Input value for "day" is not a possible day number: %i' % \
-          (day)
+    print('Error: Input value for "day" is not a possible day number: %i' % \
+          (day))
     raise Exception
 
   days = first_day_of_year(year_int) + day_int - 1
@@ -1112,8 +1112,8 @@ def load_misspellings_dict(misspellings_file_name):
   try:
     f = open(misspellings_file_name, 'r')
   except:
-    print 'Error: Can not read from misspellings file "%s"' % \
-          (misspellings_file_name)
+    print('Error: Can not read from misspellings file "%s"' % \
+          (misspellings_file_name))
     raise IOError
 
   file_data = f.readlines()  # Read complete file
@@ -1140,14 +1140,14 @@ def load_misspellings_dict(misspellings_file_name):
         key = ll[0].strip().lower()  # Get key, make lower and strip spaces
 
         if (key == ''):
-          print 'This should not happen: "%s"' % (l)
+          print('This should not happen: "%s"' % (l))
           raise Exception
 
         vals = ll[1].strip().lower() # Get values in a string
 
         if (vals == ''):
-          print 'Error: No misspellings given for "%s" in line: "%s"' % \
-                (key, l)
+          print('Error: No misspellings given for "%s" in line: "%s"' % \
+                (key, l))
           raise Exception
 
         val_list = vals.split(',')
@@ -1159,8 +1159,8 @@ def load_misspellings_dict(misspellings_file_name):
         # Check that all misspellings are different from the original
         #
         if (key in val_set):
-          print 'Error: A misspelling is the same as the original value' + \
-                ' "%s" in line: "%s"' % (key, l)
+          print('Error: A misspelling is the same as the original value' + \
+                ' "%s" in line: "%s"' % (key, l))
           raise Exception
 
         # Now insert into misspellings dictionary
@@ -1172,7 +1172,7 @@ def load_misspellings_dict(misspellings_file_name):
       elif (len(ll) == 1):  # Line contains only values - - - - - - - - - - - -
 
         if (key == None):
-          print 'Error: No key (correct word) defined in line: "%s"' % (l)
+          print('Error: No key (correct word) defined in line: "%s"' % (l))
           raise Exception
 
         vals = ll[0].lower() # Get values in a string
@@ -1186,8 +1186,8 @@ def load_misspellings_dict(misspellings_file_name):
         # Check that all misspellings are different from the original
         #
         if (key in val_set):
-          print 'Error: A misspelling is the same as the original value' + \
-                ' "%s" in line: "%s"' % (key, l)
+          print('Error: A misspelling is the same as the original value' + \
+                ' "%s" in line: "%s"' % (key, l))
           raise Exception
 
         # Now insert into misspellings dictionary
@@ -1197,7 +1197,7 @@ def load_misspellings_dict(misspellings_file_name):
         misspell_dict[key] = key_val_set
 
       else:
-        print 'error:Illegal line format in line: "%s"' % (l)
+        print('error:Illegal line format in line: "%s"' % (l))
         raise Exception
 
   # Now convert all sets into lists - - - - - - - - - - - - - - - - - - - - -
@@ -1220,8 +1220,8 @@ def load_lookup_dict(dict_file_name):
   try:
     f = open(dict_file_name, 'r')
   except:
-    print 'Error: Can not read from lookup file "%s"' % \
-          (dict_file_name)
+    print('Error: Can not read from lookup file "%s"' % \
+          (dict_file_name))
     raise IOError
 
   file_data = f.readlines()  # Read complete file
@@ -1248,14 +1248,14 @@ def load_lookup_dict(dict_file_name):
         key = ll[0].strip().lower()  # Get key, make lower and strip spaces
 
         if (key == ''):
-          print 'This should not happen: "%s"' % (l)
+          print('This should not happen: "%s"' % (l))
           raise Exception
 
         vals = ll[1].strip().lower() # Get values in a string
 
         if (vals == ''):
-          print 'Error: No lookupings given for "%s" in line: "%s"' % \
-                (key, l)
+          print('Error: No lookupings given for "%s" in line: "%s"' % \
+                (key, l))
           raise Exception
 
         val_list = vals.split(',')
@@ -1283,7 +1283,7 @@ def load_lookup_dict(dict_file_name):
       elif (len(ll) == 1):  # Line contains only values - - - - - - - - - - - -
 
         if (key == None):
-          print 'Error: No key (correct word) defined in line: "%s"' % (l)
+          print('Error: No key (correct word) defined in line: "%s"' % (l))
           raise Exception
 
         vals = ll[0].lower() # Get values in a string
@@ -1309,7 +1309,7 @@ def load_lookup_dict(dict_file_name):
           lookup_dict[key] = key_val_set
 
       else:
-        print 'error:Illegal line format in line: "%s"' % (l)
+        print('error:Illegal line format in line: "%s"' % (l))
         raise Exception
 
   # Now convert all sets into lists - - - - - - - - - - - - - - - - - - - - -
@@ -1641,7 +1641,7 @@ def get_transformation(s, t):
   try:
     f=open(replace_table_file_name,'r')
   except:
-    print 'Error cannot read file %s' % (file_name)
+    print('Error cannot read file %s' % (file_name))
     raise IOError
 
   file_data = f.readlines()
@@ -1712,17 +1712,17 @@ def apply_change(str_to_change, ch):
 # Start main program
 
 if (len(sys.argv) != 10):
-  print 'Nine arguments needed with %s:' % (sys.argv[0])
-  print '  - Output file name'
-  print '  - Number of original records'
-  print '  - Number of duplicate records'
-  print '  - Maximal number of duplicate records for one original record'
-  print '  - Maximum number of modifications per field'
-  print '  - Maximum number of modifications per record'
-  print '  - Probability distribution for duplicates (uniform, poisson, zipf)'
-  print '  - Type of modification (typo, ocr, phonetic, all)'
-  print '  - Number of households and family records'
-  print 'All other parameters have to be set within the code'
+  print('Nine arguments needed with %s:' % (sys.argv[0]))
+  print('  - Output file name')
+  print('  - Number of original records')
+  print('  - Number of duplicate records')
+  print('  - Maximal number of duplicate records for one original record')
+  print('  - Maximum number of modifications per field')
+  print('  - Maximum number of modifications per record')
+  print('  - Probability distribution for duplicates (uniform, poisson, zipf)')
+  print('  - Type of modification (typo, ocr, phonetic, all)')
+  print('  - Number of households and family records')
+  print('All other parameters have to be set within the code')
   sys.exit()
 
 output_file =           sys.argv[1]
@@ -1736,44 +1736,44 @@ type_modification =     sys.argv[8][:3]
 num_of_hofam_duplicate= int(sys.argv[9])
 
 if (num_org_records <= 0):
-  print 'Error: Number of original records must be positive'
+  print('Error: Number of original records must be positive')
   sys.exit()
 
 if (num_dup_records < 0):
-  print 'Error: Number of duplicate records must be zero or positive'
+  print('Error: Number of duplicate records must be zero or positive')
   sys.exit()
 
 if (max_num_dups <= 0) or (max_num_dups > 9):
-  print 'Error: Maximal number of duplicates per record must be positive ' + \
-        'and less than 10'
+  print('Error: Maximal number of duplicates per record must be positive ' + \
+        'and less than 10')
   sys.exit()
 
 if (max_num_field_modifi <= 0):
-  print 'Error: Maximal number of modifications per field must be positive'
+  print('Error: Maximal number of modifications per field must be positive')
   sys.exit()
 
 if (max_num_record_modifi <= 0):
-  print 'Error: Maximal number of modifications per record must be positive'
+  print('Error: Maximal number of modifications per record must be positive')
   sys.exit()
 
 if (max_num_record_modifi < max_num_field_modifi):
-  print 'Error: Maximal number of modifications per record must be equal to'
-  print '       or larger than maximal number of modifications per field'
+  print('Error: Maximal number of modifications per record must be equal to')
+  print('       or larger than maximal number of modifications per field')
   sys.exit()
 
 if (prob_distribution not in ['uni', 'poi', 'zip']):
-  print 'Error: Illegal probability distribution: %s' % (sys.argv[7])
-  print '       Must be one of: "uniform", "poisson", or "zipf"'
+  print('Error: Illegal probability distribution: %s' % (sys.argv[7]))
+  print('       Must be one of: "uniform", "poisson", or "zipf"')
   sys.exit()
 
 if (type_modification not in ['typ', 'ocr', 'pho', 'all']):
-  print 'Error: Illegal type of modification: %s' % (sys.argv[8])
-  print '       Must be one of: "typo, "ocr" or "pho" or "all"'
+  print('Error: Illegal type of modification: %s' % (sys.argv[8]))
+  print('       Must be one of: "typo, "ocr" or "pho" or "all"')
   sys.exit()
 
 if (num_of_hofam_duplicate < 0):
-  print 'Error: Number of Number of households and family records must be ' + \
-        '0 or positive'
+  print('Error: Number of Number of households and family records must be ' + \
+        '0 or positive')
   sys.exit()
 
 start_time = time.time()
@@ -1797,35 +1797,35 @@ i = 0  # Loop counter
 for field_dict in field_list:
 
   if ('name' not in field_dict):
-    print 'Error: No field name given for field dictionary'
+    print('Error: No field name given for field dictionary')
     raise Exception
   elif (field_dict['name'] == 'rec_id'):
-    print 'Error: Illegal field name "rec_id" (used for record identifier)'
+    print('Error: Illegal field name "rec_id" (used for record identifier)')
     raise Exception
   else:
     field_names.append(field_dict['name'])
 
   if (field_dict.get('type','') not in \
       ['freq','date','phone','ident','others']):
-    print 'Error: Illegal or no field type given for field "%s": %s' % \
-          (field_dict['name'], field_dict.get('type',''))
+    print('Error: Illegal or no field type given for field "%s": %s' % \
+          (field_dict['name'], field_dict.get('type','')))
     raise Exception
 
   if (field_dict.get('char_range','') not in ['alpha', 'alphanum','digit']):
-    print 'Error: Illegal or no random character range given for ' + \
+    print('Error: Illegal or no random character range given for ' + \
           'field "%s": %s' % (field_dict['name'], \
-                              field_dict.get('char_range',''))
+                              field_dict.get('char_range','')))
     raise Exception
 
   if (field_dict['type'] == 'freq'):
-    if (not field_dict.has_key('freq_file')):
-      print 'Error: Field of type "freq" has no file name given'
+    if ('freq_file' not in field_dict):
+      print('Error: Field of type "freq" has no file name given')
       raise Exception
 
   elif (field_dict['type'] == 'date'):
-    if (not (field_dict.has_key('start_date') and \
-             field_dict.has_key('end_date'))):
-      print 'Error: Field of type "date" has no start and/or end date given'
+    if (not ('start_date' in field_dict and \
+             'end_date' in field_dict)):
+      print('Error: Field of type "date" has no start and/or end date given')
       raise Exception
 
     else:  # Process start and end date
@@ -1839,32 +1839,32 @@ for field_dict in field_list:
       field_list[i] = field_dict
 
   elif (field_dict['type'] == 'phone'):
-    if (not (field_dict.has_key('area_codes') and \
-             field_dict.has_key('num_digits'))):
-      print 'Error: Field of type "phone" has no area codes and/or number ' + \
-            'of digits given'
+    if (not ('area_codes' in field_dict and \
+             'num_digits' in field_dict)):
+      print('Error: Field of type "phone" has no area codes and/or number ' + \
+            'of digits given')
       raise Exception
 
     else:  # Process area codes and number of digits
       if (isinstance(field_dict['area_codes'],str)):  # Only one area code
         field_dict['area_codes'] = [field_dict['area_codes']]  # Make it a list
       if (not isinstance(field_dict['area_codes'],list)):
-        print 'Error: Area codes given are not a string or a list: %s' % \
-              (str(field_dict['area_codes']))
+        print('Error: Area codes given are not a string or a list: %s' % \
+              (str(field_dict['area_codes'])))
         raise Exception
 
       if (not isinstance(field_dict['num_digits'],int)):
-        print 'Error: Number of digits given is not an integer: %s (%s)' % \
-              (str(field_dict['num_digits']), type(field_dict['num_digits']))
+        print('Error: Number of digits given is not an integer: %s (%s)' % \
+              (str(field_dict['num_digits']), type(field_dict['num_digits'])))
         raise Exception
 
       field_list[i] = field_dict
 
   elif (field_dict['type'] == 'ident'):
-    if (not (field_dict.has_key('start_id') and \
-             field_dict.has_key('end_id'))):
-      print 'Error: Field of type "iden" has no start and/or end ' + \
-            'identification number given'
+    if (not ('start_id' in field_dict and \
+             'end_id' in field_dict)):
+      print('Error: Field of type "iden" has no start and/or end ' + \
+            'identification number given')
       raise Exception
 
   # Check all the probabilities for this field
@@ -1872,8 +1872,8 @@ for field_dict in field_list:
   if ('select_prob' not in field_dict):
     field_dict['select_dict'] = 0.0
   elif (field_dict['select_prob'] < 0.0) or (field_dict['select_prob'] > 1.0):
-    print 'Error: Illegal value for select probability in dictionary for ' + \
-          'field "%s": %f' % (field_dict['name'], field_dict['select_prob'])
+    print('Error: Illegal value for select probability in dictionary for ' + \
+          'field "%s": %f' % (field_dict['name'], field_dict['select_prob']))
   else:
     select_prob_sum += field_dict['select_prob']
 
@@ -1883,15 +1883,15 @@ for field_dict in field_list:
     if (prob not in field_dict):
       field_dict[prob] = 0.0
     elif (field_dict[prob] < 0.0) or (field_dict[prob] > 1.0):
-      print 'Error: Illegal value for "%s" probability in dictionary for ' % \
-            (prob) + 'field "%s": %f' % (field_dict['name'], field_dict[prob])
+      print('Error: Illegal value for "%s" probability in dictionary for ' % \
+            (prob) + 'field "%s": %f' % (field_dict['name'], field_dict[prob]))
       raise Exception
     else:
       field_prob_sum += field_dict[prob]
 
   if (field_prob_sum > 0.0) and (abs(field_prob_sum - 1.0) > 0.001):
-      print 'Error: Sum of probabilities for field "%s" is not 1.0: %f' % \
-            (field_dict['name'], field_prob_sum)
+      print('Error: Sum of probabilities for field "%s" is not 1.0: %f' % \
+            (field_dict['name'], field_prob_sum))
       raise Exception
 
   # Create a list of field probabilities and insert into field dictionary
@@ -1909,8 +1909,8 @@ for field_dict in field_list:
   i += 1
 
 if (abs(select_prob_sum - 1.0) > 0.001):
-  print 'Error: Field select probabilities do not sum to 1.0: %f' % \
-        (select_prob_sum)
+  print('Error: Field select probabilities do not sum to 1.0: %f' % \
+        (select_prob_sum))
   raise Exception
 
 # Create list of select probabilities - - - - - - - - - - - - - - - - - - - - -
@@ -1985,12 +1985,12 @@ elif (prob_distribution == 'zip'):  # Zipf distribution of duplicates - - - - -
     num_dup += 1
     prob_dist_list.append((num_dup, zipf_num[i]+prob_dist_list[-1][1]))
 
-print
-print 'Create %i original and %i duplicate records' % \
-      (num_org_records, num_dup_records)
-print '  Distribution of number of duplicates (maximal %i duplicates):' % \
-      (max_num_dups)
-print '  %s' % (prob_dist_list)
+print()
+print('Create %i original and %i duplicate records' % \
+      (num_org_records, num_dup_records))
+print('  Distribution of number of duplicates (maximal %i duplicates):' % \
+      (max_num_dups))
+print('  %s' % (prob_dist_list))
 
 # -----------------------------------------------------------------------------
 # Set a distribution for family age gaps
@@ -2069,8 +2069,8 @@ def set_distribution(min_bound, max_bound, type_distrib):
 # -----------------------------------------------------------------------------
 # Load frequency files and misspellings dictionaries
 #
-print
-print 'Step 1: Load and process frequency tables and misspellings dictionaries'
+print()
+print('Step 1: Load and process frequency tables and misspellings dictionaries')
 
 freq_files = {}
 freq_files_length = {}
@@ -2088,7 +2088,7 @@ for field_dict in field_list:
       try:
         fin = open(file_name)  # Open file for reading
       except:
-        print '  Error: Can not open frequency file %s' % (file_name)
+        print('  Error: Can not open frequency file %s' % (file_name))
         raise Exception
       value_list = []  # List with all values of the frequency file
 
@@ -2096,8 +2096,8 @@ for field_dict in field_list:
         line = line.strip()
         line_list = line.split(',')
         if (len(line_list) != 2):
-          print '  Error: Illegal format in  frequency file %s: %s' % \
-                (file_name, line)
+          print('  Error: Illegal format in  frequency file %s: %s' % \
+                (file_name, line))
           raise Exception
 
         line_val =  line_list[0].strip()
@@ -2114,13 +2114,13 @@ for field_dict in field_list:
       freq_files_length[field_name] = len(value_list)
 
       if (VERBOSE_OUTPUT == True):
-        print '  Loaded frequency file for field "%s" from file: %s' % \
-              (field_dict['name'], file_name)
-        print
+        print('  Loaded frequency file for field "%s" from file: %s' % \
+              (field_dict['name'], file_name))
+        print()
 
     else:
-      print '  Error: No file name defined for frequency field "%s"' % \
-            (field_dict['name'])
+      print('  Error: No file name defined for frequency field "%s"' % \
+            (field_dict['name']))
       raise Exception
 
   if ('misspell_file' in field_dict):  # Load misspellings dictionary file
@@ -2128,18 +2128,18 @@ for field_dict in field_list:
     field_dict['misspell_dict'] = load_misspellings_dict(misspell_file_name)
 
     if (VERBOSE_OUTPUT == True):
-      print '  Loaded misspellings dictionary for field "%s" from file: "%s' \
-            % (field_dict['name'], misspell_file_name)
-      print
+      print('  Loaded misspellings dictionary for field "%s" from file: "%s' \
+            % (field_dict['name'], misspell_file_name))
+      print()
 
   if ('lookup_file' in field_dict):  # Load lookup dictionary file
     lookup_file_name = field_dict['lookup_file']
     field_dict['lookup_dict'] = load_lookup_dict(lookup_file_name)
 
     if (VERBOSE_OUTPUT == True):
-      print '  Loaded lookup dictionary for field "%s" from file: "%s' \
-            % (field_dict['name'], lookup_file_name)
-      print
+      print('  Loaded lookup dictionary for field "%s" from file: "%s' \
+            % (field_dict['name'], lookup_file_name))
+      print()
 
     field_list[i] = field_dict  # Store dictionary back into dictionary list
 
@@ -2152,8 +2152,8 @@ for field in household_freq_dict:
   try:
     fin = open(household_freq_dict[field])  # Open file for reading
   except:
-    print '  Error: Can not open household frequency file %s' % \
-          (household_freq_dict[field])
+    print('  Error: Can not open household frequency file %s' % \
+          (household_freq_dict[field]))
     raise Exception
 
   value_list = []  # List with all values of the frequency file
@@ -2162,8 +2162,8 @@ for field in household_freq_dict:
     line = line.strip()
     line_list = line.split(',')
     if (len(line_list) != 2):
-      print '  Error: Illegal format in  frequency file %s: %s' % \
-            (household_freq_dict[field], line)
+      print('  Error: Illegal format in  frequency file %s: %s' % \
+            (household_freq_dict[field], line))
       raise Exception
 
     line_val =  line_list[0].strip()
@@ -2182,9 +2182,9 @@ for field in household_freq_dict:
 # -----------------------------------------------------------------------------
 # Create original records
 #
-print
-print 'Step 2: Create original records'
-print
+print()
+print('Step 2: Create original records')
+print()
 
 org_rec = {}  # Dictionary for original records
 
@@ -2235,8 +2235,8 @@ while (rec_cnt < num_org_records):
               depend_value += '-' + rec_dict[df]
           if (depend_value in field_dict['lookup_dict']):
             rand_val = random.choice(field_dict['lookup_dict'][depend_value])
-            print 'XX: got combined dependency value: %s' % (rand_val), \
-                  depend_field, depend_value  #####################
+            print('XX: got combined dependency value: %s' % (rand_val), \
+                  depend_field, depend_value)  #####################
 
     elif (field_dict['type'] == 'date'):  # A date field
 
@@ -2265,7 +2265,7 @@ while (rec_cnt < num_org_records):
           rand_num = random.randint(0, freq_files_length['age']-1)
           rec_dict['age'] = freq_files['age'][rand_num]
 
-          print 'XX:  randomly replaced age:', rec_dict #################
+          print('XX:  randomly replaced age:', rec_dict) #################
 
     elif (field_dict['type'] == 'phone'):  # A phone number field
 
@@ -2306,7 +2306,7 @@ while (rec_cnt < num_org_records):
   #
   rec_data = rec_dict.copy()  # Make a copy of the record dictionary
   del(rec_data['rec_id'])     # Remove the record identifier
-  rec_list = rec_data.items()
+  rec_list = list(rec_data.items())
   rec_list.sort()
   rec_str = str(rec_list)
 
@@ -2318,23 +2318,23 @@ while (rec_cnt < num_org_records):
     # Print original record - - - - - - - - - - - - - - - - - - - - - - - - - -
     #
     if (VERBOSE_OUTPUT == True):
-      print '  Original:'
-      print '    Record ID         : %-30s' % (rec_dict['rec_id'])
+      print('  Original:')
+      print('    Record ID         : %-30s' % (rec_dict['rec_id']))
       for field_name in field_names:
-        print '    %-18s: %-30s' % (field_name, \
-                                    rec_dict.get(field_name, missing_value))
-      print
+        print('    %-18s: %-30s' % (field_name, \
+                                    rec_dict.get(field_name, missing_value)))
+      print()
 
   else:
     if (VERBOSE_OUTPUT == True):
-      print '***** Record "%s" already created' % (rec_str)
+      print('***** Record "%s" already created' % (rec_str))
 
 # -----------------------------------------------------------------------------
 # Create household and family records
 #
-print
-print 'Step 3: Create household and family records'
-print
+print()
+print('Step 3: Create household and family records')
+print()
 
 if (num_of_hofam_duplicate > 0):
 
@@ -3443,7 +3443,7 @@ if (num_of_hofam_duplicate > 0):
       #
       rec_data = dup_rec_dict.copy()  # Make a copy of the record dictionary
       del(rec_data['rec_id'])         # Remove the record identifier
-      rec_list = rec_data.items()
+      rec_list = list(rec_data.items())
       rec_list.sort()
       rec_str = str(rec_list)
       if (rec_str not in all_rec_set):  # Check if same record already created
@@ -3472,24 +3472,24 @@ if (num_of_hofam_duplicate > 0):
         # Print original and duplicate records field by field - - - - - - - - -
         #
         if (VERBOSE_OUTPUT == True):
-         print '  Original and duplicate records:'
-         print '    Number of modifications in record: %d' % \
-               (num_modif_in_record)
-         print '    Record ID         : %-30s | %-30s' % \
-               (org_rec_dict['rec_id'], dup_rec_dict['rec_id'])
+         print('  Original and duplicate records:')
+         print('    Number of modifications in record: %d' % \
+               (num_modif_in_record))
+         print('    Record ID         : %-30s | %-30s' % \
+               (org_rec_dict['rec_id'], dup_rec_dict['rec_id']))
          for field_name in field_names:
-           print '    %-18s: %-30s | %-30s' % \
+           print('    %-18s: %-30s | %-30s' % \
                  (field_name, org_rec_dict.get(field_name, missing_value), \
-                  dup_rec_dict.get(field_name, missing_value))
-         print
+                  dup_rec_dict.get(field_name, missing_value)))
+         print()
 
       else:
        if (VERBOSE_OUTPUT == True):
-         print '  No random modifications for record "%s" -> Choose another' \
-               % (dup_rec_id)
+         print('  No random modifications for record "%s" -> Choose another' \
+               % (dup_rec_id))
 
       if (VERBOSE_OUTPUT == True):
-        print
+        print()
 
   # ---------------------------------------------------------------------------
   # Merge original and household and family records
@@ -3500,7 +3500,7 @@ if (num_of_hofam_duplicate > 0):
 
   # Get all record IDs
   #
-  all_rec_ids = all_rec.keys()
+  all_rec_ids = list(all_rec.keys())
 
   # Loop over all record IDs
   #
@@ -3522,9 +3522,9 @@ else:
 # -----------------------------------------------------------------------------
 # Create duplicate records
 #
-print
-print 'Step 4: Create duplicate records'
-print
+print()
+print('Step 4: Create duplicate records')
+print()
 
 if (num_dup_records > 0):
 
@@ -3564,8 +3564,8 @@ if (num_dup_records > 0):
     num_dups = random_select(prob_dist_list)
 
     if (VERBOSE_OUTPUT == True):
-      print '  Use record %s to create %i duplicates' % (org_rec_id, num_dups)
-      print
+      print('  Use record %s to create %i duplicates' % (org_rec_id, num_dups))
+      print()
 
     org_rec_dict = new_org_rec[org_rec_id]  # Get the original record
 
@@ -3576,7 +3576,7 @@ if (num_dup_records > 0):
     while (d < num_dups) and (rec_cnt < num_dup_records):
 
       if (VERBOSE_OUTPUT == True):
-        print '  Generate duplicate %d:' % (d+1)
+        print('  Generate duplicate %d:' % (d+1))
 
       # Create a duplicate of the original record
       #
@@ -3604,7 +3604,7 @@ if (num_dup_records > 0):
           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           # Random swapping of values between a pair of field values
           #
-          field_swap_pair_list = field_swap_prob.keys()
+          field_swap_pair_list = list(field_swap_prob.keys())
           random.shuffle(field_swap_pair_list)
 
           for field_pair in field_swap_pair_list:
@@ -3629,8 +3629,8 @@ if (num_dup_records > 0):
                 field_mod_count_dict[fname_b] = field_mod_count_dict[fname_b]+1
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Swapped fields "%s" and "%s": "%s" <-> "%s"' % \
-                      (fname_a, fname_b, fvalue_a, fvalue_b)
+                  print('    Swapped fields "%s" and "%s": "%s" <-> "%s"' % \
+                      (fname_a, fname_b, fvalue_a, fvalue_b))
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Now introduce modifications up to the given maximal number
@@ -3704,9 +3704,9 @@ if (num_dup_records > 0):
                 dup_field_val = random.choice(misspell_list)
 
               if (VERBOSE_OUTPUT == True):
-                print '    Exchanged value "%s" in field "%s" with "%s"' % \
+                print('    Exchanged value "%s" in field "%s" with "%s"' % \
                       (old_field_val, field_name, dup_field_val) + \
-                      ' from misspellings dictionary'
+                      ' from misspellings dictionary')
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly exchange of a field value with another value
@@ -3739,8 +3739,8 @@ if (num_dup_records > 0):
 
               if (dup_field_val != old_field_val):
                 if (VERBOSE_OUTPUT == True):
-                  print '    Exchanged value in field "%s": "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                  print('    Exchanged value in field "%s": "%s" -> "%s"' % \
+                        (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly set to missing value
@@ -3750,8 +3750,8 @@ if (num_dup_records > 0):
               dup_field_val = missing_value  # Set to a missing value
 
               if (VERBOSE_OUTPUT == True):
-                print '    Set field "%s" to missing value: "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                print('    Set field "%s" to missing value: "%s" -> "%s"' % \
+                        (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly swap two words if the value contains at least two words
@@ -3777,8 +3777,8 @@ if (num_dup_records > 0):
 
               if (dup_field_val != old_field_val):
                 if (VERBOSE_OUTPUT == True):
-                  print '    Swapped words in field "%s": "%s" -> "%s"' % \
-                      (field_name, old_field_val, dup_field_val)
+                  print('    Swapped words in field "%s": "%s" -> "%s"' % \
+                      (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly create a new value if the field value is empty (missing)
@@ -3810,9 +3810,9 @@ if (num_dup_records > 0):
                 dup_field_val = str(rand_num)
 
               if (VERBOSE_OUTPUT == True):
-                print '    Exchanged missing value ' + \
+                print('    Exchanged missing value ' + \
                       '"%s" in field "%s" with "%s"' % \
-                       (missing_value, field_name, dup_field_val)
+                       (missing_value, field_name, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random substitution of a character
@@ -3835,10 +3835,10 @@ if (num_dup_records > 0):
                   dup_field_val = new_field_val
 
                   if (VERBOSE_OUTPUT == True):
-                    print '    Substituted character ' + \
+                    print('    Substituted character ' + \
                           '"%s" with "%s" in field ' % \
                           (old_char, new_char) + '"%s": "%s" -> "%s"' % \
-                          (field_name, old_field_val, dup_field_val)
+                          (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random insertion of a character
@@ -3855,9 +3855,9 @@ if (num_dup_records > 0):
                               dup_field_val[rand_ins_pos:]
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Inserted char ' + \
+                  print('    Inserted char ' + \
                         '"%s" into field "%s": "%s" -> "%s"' % \
-                        (rand_char, field_name, old_field_val, dup_field_val)
+                        (rand_char, field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random deletion of a character
@@ -3875,9 +3875,9 @@ if (num_dup_records > 0):
                               dup_field_val[rand_del_pos+1:]
 
               if (VERBOSE_OUTPUT == True):
-                print '    Deleted character ' + \
+                print('    Deleted character ' + \
                       '"%s" in field "%s": "%s" -> "%s"' % \
-                      (del_char, field_name, old_field_val, dup_field_val)
+                      (del_char, field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random transposition of two characters
@@ -3899,9 +3899,9 @@ if (num_dup_records > 0):
                 dup_field_val = new_field_val
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Transposed characters "%s" in field "%s": "%s"'\
+                  print('    Transposed characters "%s" in field "%s": "%s"'\
                         % (trans_chars, field_name, old_field_val) + \
-                        '-> "%s"' % (dup_field_val)
+                        '-> "%s"' % (dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random insertion of a space (thus splitting a word)
@@ -3926,9 +3926,9 @@ if (num_dup_records > 0):
                 dup_field_val = new_field_val
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Inserted space " " into field ' + \
+                  print('    Inserted space " " into field ' + \
                         '"%s": "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                        (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random deletion of a space (thus merging two words)
@@ -3956,9 +3956,9 @@ if (num_dup_records > 0):
                 dup_field_val = new_field_val
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Deleted space " " from field ' + \
+                  print('    Deleted space " " from field ' + \
                         '"%s": "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                        (field_name, old_field_val, dup_field_val))
 
           # -------------------------------------------------------------------
           # Phonetic modifications
@@ -3978,9 +3978,9 @@ if (num_dup_records > 0):
                   dup_field_val = apply_change(old_field_val, ch)
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    Phonetic modification ' + \
+                  print('    Phonetic modification ' + \
                         '"%s" in field "%s": "%s" -> "%s"' % \
-                        (ch, field_name, old_field_val, dup_field_val)
+                        (ch, field_name, old_field_val, dup_field_val))
 
           # -------------------------------------------------------------------
           # OCR modifications
@@ -4000,9 +4000,9 @@ if (num_dup_records > 0):
                   dup_field_val = apply_change(old_field_val, ch)
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    OCR modification ' + \
+                  print('    OCR modification ' + \
                         '"%s" from field "%s": "%s" -> "%s"' % \
-                        (ch, field_name, old_field_val, dup_field_val)
+                        (ch, field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random deletion of a character (field must contain at least two
@@ -4021,9 +4021,9 @@ if (num_dup_records > 0):
                             dup_field_val[rand_del_pos+1:]
 
               if (VERBOSE_OUTPUT == True):
-                print '    OCR Failure character ' + \
+                print('    OCR Failure character ' + \
                       '"%s" in field "%s": "%s" -> "%s"' % \
-                      (del_char, field_name, old_field_val, dup_field_val)
+                      (del_char, field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random insertion of a space (thus splitting a word) (field must
@@ -4048,9 +4048,9 @@ if (num_dup_records > 0):
                  dup_field_val = new_field_val
 
                  if (VERBOSE_OUTPUT == True):
-                  print '    OCR Inserted space " " into field ' + \
+                  print('    OCR Inserted space " " into field ' + \
                         '"%s": "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                        (field_name, old_field_val, dup_field_val))
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Random deletion of a space (thus merging two words) (field must
@@ -4079,9 +4079,9 @@ if (num_dup_records > 0):
                 dup_field_val = new_field_val
 
                 if (VERBOSE_OUTPUT == True):
-                  print '    OCR Deleted space " " from field ' +\
+                  print('    OCR Deleted space " " from field ' +\
                         '"%s": "%s" -> "%s"' % \
-                        (field_name, old_field_val, dup_field_val)
+                        (field_name, old_field_val, dup_field_val))
 
           # Now check if the modified field value is different - - - - - - - -
           #
@@ -4103,7 +4103,7 @@ if (num_dup_records > 0):
       #
       rec_data = dup_rec_dict.copy()  # Make a copy of the record dictionary
       del(rec_data['rec_id'])         # Remove the record identifier
-      rec_list = rec_data.items()
+      rec_list = list(rec_data.items())
       rec_list.sort()
       rec_str = str(rec_list)
 
@@ -4121,37 +4121,37 @@ if (num_dup_records > 0):
         # Print original and duplicate records field by field - - - - - - - - -
         #
         if (VERBOSE_OUTPUT == True):
-          print '  Original and duplicate records:'
-          print '    Number of modifications in record: %d' % \
-                (num_modif_in_record)
-          print '    Record ID         : %-30s | %-30s' % \
-              (org_rec_dict['rec_id'], dup_rec_dict['rec_id'])
+          print('  Original and duplicate records:')
+          print('    Number of modifications in record: %d' % \
+                (num_modif_in_record))
+          print('    Record ID         : %-30s | %-30s' % \
+              (org_rec_dict['rec_id'], dup_rec_dict['rec_id']))
           for field_name in field_names:
-            print '    %-18s: %-30s | %-30s' % \
+            print('    %-18s: %-30s | %-30s' % \
                   (field_name, org_rec_dict.get(field_name, missing_value), \
-                   dup_rec_dict.get(field_name, missing_value))
-          print
+                   dup_rec_dict.get(field_name, missing_value)))
+          print()
 
       else:
         if (VERBOSE_OUTPUT == True):
-          print '  No random modifications for record "%s" -> Choose another' \
-                % (dup_rec_id)
+          print('  No random modifications for record "%s" -> Choose another' \
+                % (dup_rec_id))
 
       if (VERBOSE_OUTPUT == True):
-        print
+        print()
 
 # -----------------------------------------------------------------------------
 # Write output csv file
 #
-print
-print 'Step 3: Write output file'
+print()
+print('Step 3: Write output file')
 
 all_rec = new_org_rec  # Merge original and duplicate records
 
 if (num_dup_records > 0):
   all_rec.update(dup_rec)
 
-all_rec_ids = all_rec.keys()  # Get all record IDs and shuffle them randomly
+all_rec_ids = list(all_rec.keys())  # Get all record IDs and shuffle them randomly
 random.shuffle(all_rec_ids)
 
 # Make a list of field names and sort them according to column number
@@ -4166,7 +4166,7 @@ else:
 try:
   f_out = open(output_file, 'w')
 except:
-  print 'Error: Can not write to output file "%s"' % (output_file)
+  print('Error: Can not write to output file "%s"' % (output_file))
   sys.exit()
 
 # Write header line - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -4205,6 +4205,6 @@ for rec_id in all_rec_ids:
 
 f_out.close()
 
-print 'End.'
+print('End.')
 
 #==============================================================================

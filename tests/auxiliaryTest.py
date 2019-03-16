@@ -227,10 +227,10 @@ class TestCase(unittest.TestCase):
     """Test 'check_is_function_or_method' function."""
 
     def f1(x):
-      print x
+      print(x)
 
     def f2():
-      print 'hello'
+      print('hello')
 
     assert (auxiliary.check_is_function_or_method('TestArgument', f1)  == None)
     assert (auxiliary.check_is_function_or_method('TestArgument', f2)  == None)

@@ -1579,13 +1579,13 @@ class TestCase(unittest.TestCase):
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
 
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 1
       assert sum(w_vec_dict[k]) == v[0]
 
@@ -1595,13 +1595,13 @@ class TestCase(unittest.TestCase):
                                                                     vec_w_list)
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 1
       assert 2.0*sum(w_vec_dict[k]) == v[0]
 
@@ -1612,13 +1612,13 @@ class TestCase(unittest.TestCase):
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
 
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 3
       assert sum(w_vec_dict[k]) == sum(v)
       assert sum(w_vec_dict[k][0:2]) == v[0]
@@ -1631,13 +1631,13 @@ class TestCase(unittest.TestCase):
                                                                     vec_w_list)
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 3
       assert 3.0*sum(w_vec_dict[k][0:2]) == v[0]
       assert 4.0*sum(w_vec_dict[k][2:4]) == v[1]
@@ -1650,13 +1650,13 @@ class TestCase(unittest.TestCase):
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
 
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 3
       assert w_vec_dict[k][0] == v[0]
       assert w_vec_dict[k][4] == v[1]
@@ -1668,13 +1668,13 @@ class TestCase(unittest.TestCase):
                                                                     vec_w_list)
     assert isinstance(res_w_vec_dict, dict) == True
     assert len(res_w_vec_dict) == len(w_vec_dict)
-    org_keys = w_vec_dict.keys()
-    new_keys = res_w_vec_dict.keys()
+    org_keys = list(w_vec_dict.keys())
+    new_keys = list(res_w_vec_dict.keys())
     org_keys.sort()
     new_keys.sort()
     assert org_keys == new_keys
 
-    for (k, v) in res_w_vec_dict.items():
+    for (k, v) in list(res_w_vec_dict.items()):
       assert len(v) == 3
       assert 3.0*w_vec_dict[k][0] == v[0]
       assert 7.0*w_vec_dict[k][4] == v[1]

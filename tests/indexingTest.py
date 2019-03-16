@@ -61,7 +61,7 @@ import stringcmp
 import indexing
 
 def print_log(x):  # Function to be used as 'log_funct'
-  print x
+  print(x)
 
 # =============================================================================
 
@@ -213,14 +213,14 @@ class TestCase(unittest.TestCase):
 
       assert len(w_vec_dict_list[i]) == len(w_vec_dict_list[i+1])
 
-      rec_keys1 = w_vec_dict_list[i].keys()
+      rec_keys1 = list(w_vec_dict_list[i].keys())
       rec_keys1.sort()
-      rec_keys2 = w_vec_dict_list[i+1].keys()
+      rec_keys2 = list(w_vec_dict_list[i+1].keys())
       rec_keys2.sort()
 
-      rec_values1 = w_vec_dict_list[i].values()
+      rec_values1 = list(w_vec_dict_list[i].values())
       rec_values1.sort()
-      rec_values2 = w_vec_dict_list[i+1].values()
+      rec_values2 = list(w_vec_dict_list[i+1].values())
       rec_values2.sort()
 
       assert rec_values1 == rec_values2
@@ -356,14 +356,14 @@ class TestCase(unittest.TestCase):
 
       assert len(w_vec_dict_list[i]) == len(w_vec_dict_list[i+1])
 
-      rec_keys1 = w_vec_dict_list[i].keys()
+      rec_keys1 = list(w_vec_dict_list[i].keys())
       rec_keys1.sort()
-      rec_keys2 = w_vec_dict_list[i+1].keys()
+      rec_keys2 = list(w_vec_dict_list[i+1].keys())
       rec_keys2.sort()
 
-      rec_values1 = w_vec_dict_list[i].values()
+      rec_values1 = list(w_vec_dict_list[i].values())
       rec_values1.sort()
-      rec_values2 = w_vec_dict_list[i+1].values()
+      rec_values2 = list(w_vec_dict_list[i+1].values())
       rec_values2.sort()
 
       assert rec_values1 == rec_values2
@@ -703,7 +703,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -800,7 +800,7 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -810,7 +810,7 @@ class TestCase(unittest.TestCase):
                'Record pair %s from blocking index not in sorting index' % \
                (str((rec_ident1,rec_ident2)))
 
-      for rec_ident_pair in prev_rec_dict.iterkeys():
+      for rec_ident_pair in prev_rec_dict.keys():
         assert rec_ident_pair in weight_vec_dict, \
                'Record pair %s not in weight vector dict with window = %d' % \
                (str(rec_ident_pair), w)
@@ -833,17 +833,17 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-    for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
              'Not in blocking weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in sorting weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -912,7 +912,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1008,7 +1008,7 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -1018,7 +1018,7 @@ class TestCase(unittest.TestCase):
                'Record pair %s from blocking index not in sorting index' % \
                (str((rec_ident1,rec_ident2)))
 
-      for rec_ident_pair in prev_rec_dict.iterkeys():
+      for rec_ident_pair in prev_rec_dict.keys():
         assert rec_ident_pair in weight_vec_dict, \
                'Record pair %s not in weight vector dict with window = %d' % \
                (str(rec_ident_pair), w)
@@ -1040,17 +1040,17 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-    for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
              'Not in blocking weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in sorting weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -1122,7 +1122,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1229,7 +1229,7 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -1243,7 +1243,7 @@ class TestCase(unittest.TestCase):
 
       # Make sure record identifiers in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1253,7 +1253,7 @@ class TestCase(unittest.TestCase):
       #         'Not in blocking weight vectors: %s' % \
       #         (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in sorting weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
@@ -1322,7 +1322,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1427,7 +1427,7 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -1441,7 +1441,7 @@ class TestCase(unittest.TestCase):
 
       # Make sure record identifiers in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1451,7 +1451,7 @@ class TestCase(unittest.TestCase):
       #         'Not in blocking weight vectors: %s' % \
       #         (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in sorting weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
@@ -1592,13 +1592,13 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
 
       if (prev_rec_dict != {}):  # Only if there is a previous one
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with window = %d' % \
                  (str(rec_ident_pair), w)
@@ -1739,13 +1739,13 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
 
       if (prev_rec_dict != {}):  # Only if there is a previous one
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with window = %d' % \
                  (str(rec_ident_pair), w)
@@ -1819,7 +1819,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -1927,7 +1927,7 @@ class TestCase(unittest.TestCase):
 
       # Build a sorting weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -1937,7 +1937,7 @@ class TestCase(unittest.TestCase):
                'Record pair %s from blocking index not in q-gram index' % \
                (str((rec_ident1,rec_ident2)))
 
-      for rec_ident_pair in prev_rec_dict.iterkeys():
+      for rec_ident_pair in prev_rec_dict.keys():
 
         assert rec_ident_pair in weight_vec_dict, \
                'Record pair %s not in weight vector dict with thresh = %f' % \
@@ -1965,17 +1965,17 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-    for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
              'Not in blocking weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in q-gram weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -2045,7 +2045,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
 
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
@@ -2154,7 +2154,7 @@ class TestCase(unittest.TestCase):
 
       # Build a q-gram weight vector dict with pair identifiers sorted
       #
-      for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -2164,7 +2164,7 @@ class TestCase(unittest.TestCase):
                'Record pair %s from blocking index not in q-gram index' % \
                (str((rec_ident1,rec_ident2)))
 
-      for rec_ident_pair in prev_rec_dict.iterkeys():
+      for rec_ident_pair in prev_rec_dict.keys():
         assert rec_ident_pair in weight_vec_dict, \
                'Record pair %s not in weight vector dict with thresh = %f' % \
                (str(rec_ident_pair), t)
@@ -2191,17 +2191,17 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-    for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
              'Not in blocking weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in q-gram weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -2272,7 +2272,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -2418,7 +2418,7 @@ class TestCase(unittest.TestCase):
 
         # Build a canopy weight vector dict with pair identifiers sorted
         #
-        for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -2428,7 +2428,7 @@ class TestCase(unittest.TestCase):
                  'Record pair %s from blocking index not in canopy index' % \
                  (str((rec_ident1,rec_ident2)))
 
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
 
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with canopy ' % \
@@ -2459,17 +2459,17 @@ class TestCase(unittest.TestCase):
 
       # Make sure record identifiers in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-      for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                'Not in blocking weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in canopy weight vectors: %s' % \
               (str((rec_ident1,rec_ident2)))
@@ -2539,7 +2539,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
 
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
@@ -2688,7 +2688,7 @@ class TestCase(unittest.TestCase):
 
         # Build a canopy weight vector dict with pair identifiers sorted
         #
-        for ((rec_ident1,rec_ident2), weight_list) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2), weight_list) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -2698,7 +2698,7 @@ class TestCase(unittest.TestCase):
                  'Record pair %s from blocking index not in canopy index' % \
                  (str((rec_ident1,rec_ident2)))
 
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with canopy ' % \
                  (str(rec_ident_pair)) + 'method: %s' % (str(canopy_method))
@@ -2729,17 +2729,17 @@ class TestCase(unittest.TestCase):
 
       # Make sure record identifiers in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-      for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                'Not in blocking weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in canopy weight vectors: %s' % \
               (str((rec_ident1,rec_ident2)))
@@ -2811,7 +2811,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -2949,7 +2949,7 @@ class TestCase(unittest.TestCase):
 
           # Build a string-map weight vector dict with pair identifiers sorted
           #
-          for ((rec_ident1,rec_ident2),weight_list) in weight_vec_dict.items():
+          for ((rec_ident1,rec_ident2),weight_list) in list(weight_vec_dict.items()):
             if (rec_ident1 > rec_ident2):
               del weight_vec_dict[(rec_ident1,rec_ident2)]
               weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -2959,7 +2959,7 @@ class TestCase(unittest.TestCase):
                    'Record pair %s from blocking index not in StrMap index' % \
                    (str((rec_ident1,rec_ident2)))
 
-          for rec_ident_pair in prev_rec_dict.iterkeys():
+          for rec_ident_pair in prev_rec_dict.keys():
             assert rec_ident_pair in weight_vec_dict, \
                    'Record pair %s not in weight vector dict with canopy ' % \
                    (str(rec_ident_pair)) + 'method: %s' % (str(canopy_method))
@@ -2993,17 +2993,17 @@ class TestCase(unittest.TestCase):
 
         # Make sure record ident. in each pair are sorted (smaller id first)
         #
-        for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-        for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+        for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
           assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                  'Not in blocking weight vectors: %s' % \
                  (str((rec_ident1,rec_ident2)))
 
-        for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+        for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
           assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                  'Not in string-map weight vectors: %s' % \
                 (str((rec_ident1,rec_ident2)))
@@ -3073,7 +3073,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
 
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
@@ -3210,7 +3210,7 @@ class TestCase(unittest.TestCase):
 
           # Build a string-map weight vector dict with pair identifiers sorted
           #
-          for ((rec_ident1,rec_ident2),weight_list) in weight_vec_dict.items():
+          for ((rec_ident1,rec_ident2),weight_list) in list(weight_vec_dict.items()):
             if (rec_ident1 > rec_ident2):
               del weight_vec_dict[(rec_ident1,rec_ident2)]
               weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -3261,17 +3261,17 @@ class TestCase(unittest.TestCase):
 
         # Make sure record ident. in each pair are sorted (smaller id first)
         #
-        for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-        for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+        for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
           assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                  'Not in blocking weight vectors: %s' % \
                  (str((rec_ident1,rec_ident2)))
 
-        for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+        for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
           assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                  'Not in canopy weight vectors: %s' % \
                 (str((rec_ident1,rec_ident2)))
@@ -3343,7 +3343,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -3461,7 +3461,7 @@ class TestCase(unittest.TestCase):
 
         # Build a BigMatch weight vector dict with pair identifiers sorted
         #
-        for ((rec_ident1,rec_ident2),weight_list) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2),weight_list) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -3472,7 +3472,7 @@ class TestCase(unittest.TestCase):
                  (str((rec_ident1,rec_ident2)))+' with block method: %s' % \
                  (block_method)
 
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in previous weight vector dict: %s'  % \
                  (str(rec_ident_pair), str(block_method))
@@ -3503,17 +3503,17 @@ class TestCase(unittest.TestCase):
 
       # Make sure record ident. in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-      for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                'Not in blocking weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in BigMatch weight vectors: %s' % \
               (str((rec_ident1,rec_ident2)))
@@ -3585,7 +3585,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -3701,7 +3701,7 @@ class TestCase(unittest.TestCase):
 
         # Build a Dedup weight vector dict with pair identifiers sorted
         #
-        for ((rec_ident1,rec_ident2),weight_list) in weight_vec_dict.items():
+        for ((rec_ident1,rec_ident2),weight_list) in list(weight_vec_dict.items()):
           if (rec_ident1 > rec_ident2):
             del weight_vec_dict[(rec_ident1,rec_ident2)]
             weight_vec_dict[(rec_ident2,rec_ident1)] = weight_list
@@ -3712,7 +3712,7 @@ class TestCase(unittest.TestCase):
                  (str((rec_ident1,rec_ident2)))+' with block method: %s' % \
                  (block_method)
 
-        for rec_ident_pair in prev_rec_dict.iterkeys():
+        for rec_ident_pair in prev_rec_dict.keys():
           assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in previous weight vector dict: %s'  % \
                  (str(rec_ident_pair), str(block_method))
@@ -3743,17 +3743,17 @@ class TestCase(unittest.TestCase):
 
       # Make sure record ident. in each pair are sorted (smaller id first)
       #
-      for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+      for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
         if (rec_ident1 > rec_ident2):
           del weight_vec_dict[(rec_ident1,rec_ident2)]
           weight_vec_dict[(rec_ident2,rec_ident1)] = w
 
-      for (rec_ident1,rec_ident2) in weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in block_index_weight_vec_dict, \
                'Not in blocking weight vectors: %s' % \
                (str((rec_ident1,rec_ident2)))
 
-      for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+      for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
         assert (rec_ident1,rec_ident2) in weight_vec_dict, \
                'Not in Dedup weight vectors: %s' % \
               (str((rec_ident1,rec_ident2)))
@@ -3824,7 +3824,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -3942,7 +3942,7 @@ class TestCase(unittest.TestCase):
 
             # Build suffix array weight vector dict with pair identifier sorted
             #
-            for ((rec_ident1,rec_ident2),w_list) in weight_vec_dict.items():
+            for ((rec_ident1,rec_ident2),w_list) in list(weight_vec_dict.items()):
               if (rec_ident1 > rec_ident2):
                 del weight_vec_dict[(rec_ident1,rec_ident2)]
                 weight_vec_dict[(rec_ident2,rec_ident1)] = w_list
@@ -3952,7 +3952,7 @@ class TestCase(unittest.TestCase):
                    'Record pair %s from blocking index not in suffix array' % \
                    (str((rec_ident1,rec_ident2)))+' index'
 
-            for rec_ident_pair in prev_rec_dict.iterkeys():
+            for rec_ident_pair in prev_rec_dict.keys():
               assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with method: %s' % \
                  (str(rec_ident_pair), (str(sarray_index.block_method)))
@@ -3979,7 +3979,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -3989,7 +3989,7 @@ class TestCase(unittest.TestCase):
 #             'Not in blocking weight vectors: %s' % \
 #             (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in suffix array weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -4058,7 +4058,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4178,7 +4178,7 @@ class TestCase(unittest.TestCase):
 
             # Build suffix array weight vector dict with pair identifier sorted
             #
-            for ((rec_ident1,rec_ident2),w_list) in weight_vec_dict.items():
+            for ((rec_ident1,rec_ident2),w_list) in list(weight_vec_dict.items()):
               if (rec_ident1 > rec_ident2):
                 del weight_vec_dict[(rec_ident1,rec_ident2)]
                 weight_vec_dict[(rec_ident2,rec_ident1)] = w_list
@@ -4188,7 +4188,7 @@ class TestCase(unittest.TestCase):
                    'Record pair %s from blocking index not in suffix array ' \
                     % (str((rec_ident1,rec_ident2)))+'index'
 
-            for rec_ident_pair in prev_rec_dict.iterkeys():
+            for rec_ident_pair in prev_rec_dict.keys():
               assert rec_ident_pair in weight_vec_dict, \
                    'Record pair %s not in weight vector dict with method: %s' \
                    % (str(rec_ident_pair), (str(sarray_index.block_method)))
@@ -4217,7 +4217,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4227,7 +4227,7 @@ class TestCase(unittest.TestCase):
 #             'Not in blocking weight vectors: %s' % \
 #             (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in suffix array weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -4299,7 +4299,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4428,7 +4428,7 @@ class TestCase(unittest.TestCase):
 
             # Build suffix array weight vector dict with pair identifier sorted
             #
-            for ((rec_ident1,rec_ident2),w_list) in weight_vec_dict.items():
+            for ((rec_ident1,rec_ident2),w_list) in list(weight_vec_dict.items()):
               if (rec_ident1 > rec_ident2):
                 del weight_vec_dict[(rec_ident1,rec_ident2)]
                 weight_vec_dict[(rec_ident2,rec_ident1)] = w_list
@@ -4438,7 +4438,7 @@ class TestCase(unittest.TestCase):
                    'Record pair %s from blocking index not in suffix array' % \
                    (str((rec_ident1,rec_ident2)))+' index'
 
-            for rec_ident_pair in prev_rec_dict.iterkeys():
+            for rec_ident_pair in prev_rec_dict.keys():
               assert rec_ident_pair in weight_vec_dict, \
                  'Record pair %s not in weight vector dict with method: %s' % \
                  (str(rec_ident_pair), (str(rsarray_index.block_method)))
@@ -4468,7 +4468,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4478,7 +4478,7 @@ class TestCase(unittest.TestCase):
 #             'Not in blocking weight vectors: %s' % \
 #             (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in robust suffix array weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
@@ -4548,7 +4548,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in block_index_weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(block_index_weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del block_index_weight_vec_dict[(rec_ident1,rec_ident2)]
         block_index_weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4680,7 +4680,7 @@ class TestCase(unittest.TestCase):
 
             # Build suffix array weight vector dict with pair identifier sorted
             #
-            for ((rec_ident1,rec_ident2),w_list) in weight_vec_dict.items():
+            for ((rec_ident1,rec_ident2),w_list) in list(weight_vec_dict.items()):
               if (rec_ident1 > rec_ident2):
                 del weight_vec_dict[(rec_ident1,rec_ident2)]
                 weight_vec_dict[(rec_ident2,rec_ident1)] = w_list
@@ -4690,7 +4690,7 @@ class TestCase(unittest.TestCase):
                    'Record pair %s from blocking index not in suffix array ' \
                     % (str((rec_ident1,rec_ident2)))+'index'
 
-            for rec_ident_pair in prev_rec_dict.iterkeys():
+            for rec_ident_pair in prev_rec_dict.keys():
               assert rec_ident_pair in weight_vec_dict, \
                    'Record pair %s not in weight vector dict with method: %s' \
                    % (str(rec_ident_pair), (str(rsarray_index.block_method)))
@@ -4721,7 +4721,7 @@ class TestCase(unittest.TestCase):
 
     # Make sure record identifiers in each pair are sorted (smaller id first)
     #
-    for ((rec_ident1,rec_ident2),w) in weight_vec_dict.items():
+    for ((rec_ident1,rec_ident2),w) in list(weight_vec_dict.items()):
       if (rec_ident1 > rec_ident2):
         del weight_vec_dict[(rec_ident1,rec_ident2)]
         weight_vec_dict[(rec_ident2,rec_ident1)] = w
@@ -4731,7 +4731,7 @@ class TestCase(unittest.TestCase):
 #             'Not in blocking weight vectors: %s' % \
 #             (str((rec_ident1,rec_ident2)))
 
-    for (rec_ident1,rec_ident2) in block_index_weight_vec_dict.keys():
+    for (rec_ident1,rec_ident2) in list(block_index_weight_vec_dict.keys()):
       assert (rec_ident1,rec_ident2) in weight_vec_dict, \
              'Not in robust suffix array weight vectors: %s' % \
              (str((rec_ident1,rec_ident2)))
