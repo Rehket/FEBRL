@@ -8,6 +8,8 @@ python36_test:
 python37_test:
   image: python:3.7.2-alpine3.9
   script:
+    - apk add git=2.21.0-r0 # Needed for coveralls
+    - apk upgrade
     - pip install -r req.txt
     - pytest --cov=febrl tests/
     - coveralls
