@@ -1,43 +1,6 @@
-# =============================================================================
-# AUSTRALIAN NATIONAL UNIVERSITY OPEN SOURCE LICENSE (ANUOS LICENSE)
-# VERSION 1.3
+# Licensed under GPLv3, please reference LICENSE for more details.
 #
-# The contents of this file are subject to the ANUOS License Version 1.3
-# (the "License"); you may not use this file except in compliance with
-# the License. You may obtain a copy of the License at:
-#
-#   https://sourceforge.net/projects/febrl/
-#
-# Software distributed under the License is distributed on an "AS IS"
-# basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
-# the License for the specific language governing rights and limitations
-# under the License.
-#
-# The Original Software is: "mymath.py"
-#
-# The Initial Developer of the Original Software is:
-#   Dr Peter Christen (Research School of Computer Science, The Australian
-#                      National University)
-#
-# Copyright (C) 2002 - 2011 the Australian National University and
-# others. All Rights Reserved.
-#
-# Contributors:
-#
-# Alternatively, the contents of this file may be used under the terms
-# of the GNU General Public License Version 2 or later (the "GPL"), in
-# which case the provisions of the GPL are applicable instead of those
-# above. The GPL is available at the following URL: http://www.gnu.org/
-# If you wish to allow use of your version of this file only under the
-# terms of the GPL, and not to allow others to use your version of this
-# file under the terms of the ANUOS License, indicate your decision by
-# deleting the provisions above and replace them with the notice and
-# other provisions required by the GPL. If you do not delete the
-# provisions above, a recipient may use your version of this file under
-# the terms of any one of the ANUOS License or the GPL.
-# =============================================================================
-#
-# Freely extensible biomedical record linkage (Febrl) - Version 0.4.2
+# Freely extensible biomedical record linkage (Febrl)
 #
 # See: http://datamining.anu.edu.au/linkage.html
 #
@@ -55,29 +18,37 @@ import logging
 import math
 import random
 
-# =============================================================================
 
+def distL1(vec1: list, vec2: list) -> float:
 
-def distL1(vec1, vec2):
-    """L1 distance measure, also called Manhattan distance.
+    """
+        L1 distance measure, also called Manhattan distance.
 
-       The distance between two points measured along axes at right angles.
+        The distance between two points measured along axes at right angles.
 
-       See also:
-         http://www.nist.gov/dads/HTML/lmdistance.html
-         http://en.wikipedia.org/wiki/Distance
+        See also:
+            http://www.nist.gov/dads/HTML/lmdistance.html
+            http://en.wikipedia.org/wiki/Distance
+
+        Assumes the vectors are the same length.
+
+    :param vec1: A list representing a point in len(vec1) dimensions
+    :param vec2: A list representing a point in len(vec2) dimensions
+    :return: The Distance between vec1 and vec2
     """
 
-    #  assert len(vec1) == len(vec2)
+    if len(vec1) != len(vec2):
+        raise ValueError(f'Vectors of different length are not supported. '
+                         f'Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}')
 
     vec_len = len(vec1)
 
-    L1_dist = 0.0
+    l1_distance = 0.0
 
     for i in range(vec_len):
-        L1_dist += abs(float(vec1[i]) - float(vec2[i]))
+        l1_distance += abs(float(vec1[i]) - float(vec2[i]))
 
-    return L1_dist
+    return l1_distance
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

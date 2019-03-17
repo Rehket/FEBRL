@@ -51,7 +51,7 @@
      (HMM).
 
    PUBLIC FUNCTIONS:
-     initialisation (__init__)  Initialise a new Hidden Markov Model
+     initialisation (__init__.py)  Initialise a new Hidden Markov Model
      set_trans_prob             Set transition probability
      set_obser_prob             Set observation probability
      set_init_prob              Set initial state probability
