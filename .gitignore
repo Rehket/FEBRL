@@ -52,3 +52,10 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+/junit/
+.idea/*
+__pycache__/
+docs/
+febrl/__pycache__/
+junit/
+tests/__pycache__/
