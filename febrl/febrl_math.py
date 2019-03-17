@@ -1,5 +1,5 @@
 """
-distance.py: File for different distance calculations
+febrl_math.py: File for different math calculations used in febrl
 
 """
 
@@ -137,45 +137,81 @@ def distCanberra(vec1, vec2):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+def cosine_similarity(vec1: list, vec2: list) -> float:
+    """
+    Calculates and returns the cosine similarity between two vectors
 
-def distCosine(vec1, vec2):
-    """Cosine distance measure.
+    See also:
+        https://en.wikipedia.org/wiki/Cosine_similarity
 
-       Note: This function assumes that all vector elements are non-negative.
-
-       See also:
-         http://en.wikipedia.org/wiki/Vector_space_model
+    :param vec1: A list representing a vector of len(vec1) dimensions
+    :param vec2: A list representing a vector of len(vec2) dimensions
+    :return: The cosine similarity.
     """
 
-    assert len(vec1) == len(vec2)
+    if len(vec1) != len(vec2):
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
 
-    vec_len = len(vec1)
+    combine_vector = zip(vec1, vec2)
 
-    vec1sum = 0.0
-    vec2sum = 0.0
-    vec12sum = 0.0
+    vec1sqr = 0.0
+    vec2sqr = 0.0
+    dot_product = 0.0
 
-    for i in range(vec_len):
-        vec1sum += vec1[i] * vec1[i]
-        vec2sum += vec2[i] * vec2[i]
-        vec12sum += vec1[i] * vec2[i]
+    for val in combine_vector:
+        vec1sqr += val[0] * val[0]
+        vec2sqr += val[1] * val[1]
+        dot_product += val[0] * val[1]
 
-    if vec1sum * vec2sum == 0.0:
-        cos_dist = 1.0  # At least one vector is all zeros
+    if vec1sqr == 0.0 or vec2sqr == 0.0:
+        return 0.0  # At least one vector is all zeros
 
     else:
-        vec1sum = math.sqrt(vec1sum)
-        vec2sum = math.sqrt(vec2sum)
+        vec1_magnitude = math.sqrt(vec1sqr)
+        vec2_magnitude = math.sqrt(vec2sqr)
 
-        cos_sim = vec12sum / (vec1sum * vec2sum)
+        cos_sim = dot_product / (vec1_magnitude * vec2_magnitude)
 
         # Due to rounding errors the similarity can be slightly larger than 1.0
-        #
         cos_sim = min(cos_sim, 1.0)
+        cos_sim = max(cos_sim, -1.0)
 
-        assert (cos_sim >= 0.0) and (cos_sim <= 1.0), (cos_sim, vec1, vec2)
+        return cos_sim
 
-        cos_dist = 1.0 - cos_sim
+
+def dist_cosine(vec1, vec2):
+
+    """
+    Cosine distance is 1 - the Cosine Similarity, A measure of similarity between two positive vectors.
+    - How similarly oriented are two vectors?
+
+    Note: This function assumes that all vector elements are non-negative.
+
+    See also:
+            http://en.wikipedia.org/wiki/Vector_space_model
+    :param vec1: A list representing a point in len(vec1) dimensions
+    :param vec2: A list representing a point in len(vec2) dimensions
+    :return: The L2 Distance between vec1 and vec2
+    """
+
+    if len(vec1) != len(vec2):
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
+
+    cos_sim = cosine_similarity(vec1, vec2)
+
+    if cos_sim < 0:
+        raise ValueError(
+            f"Only positive vectors are supported for dist_cosine: "
+            f"cosine_similarity: {cos_sim}, vec1: {vec1}, vec2: {vec2}"
+        )
+
+    cos_dist = 1.0 - cos_sim
 
     return cos_dist
 
