@@ -60,3 +60,4 @@ febrl/__pycache__/
 junit/
 tests/__pycache__/
 
+/.coverage
