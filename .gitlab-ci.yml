@@ -2,5 +2,5 @@ test:
   script:
   - apt-get update -qy
   - apt-get install -y python-dev python-pip
-  - pip install -r requirements.txt
+  - pip install -r req.txt
   - pytest test
