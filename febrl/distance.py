@@ -1,6 +1,5 @@
-
 """
-File for different distance calculations
+distance.py: File for different distance calculations
 
 """
 
@@ -26,8 +25,10 @@ def distL1(vec1: list, vec2: list) -> float:
     """
 
     if len(vec1) != len(vec2):
-        raise ValueError(f'Vectors of different lengths are not supported. '
-                         f'Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}')
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
 
     vec_len = len(vec1)
 
@@ -59,8 +60,10 @@ def distL2(vec1: list, vec2: list) -> float:
     """
 
     if len(vec1) != len(vec2):
-        raise ValueError(f'Vectors of different lengths are not supported. '
-                         f'Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}')
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
 
     vec_len = len(vec1)
 
@@ -79,7 +82,8 @@ def distL2(vec1: list, vec2: list) -> float:
 def distLInf(vec1, vec2):
 
     """
-    L-Infinity distance measure.
+    L-Infinity distance measure. The maximum absolute difference between
+    two vector components.
 
     See also:
         http://www.nist.gov/dads/HTML/lmdistance.html
@@ -90,8 +94,10 @@ def distLInf(vec1, vec2):
     """
 
     if len(vec1) != len(vec2):
-        raise ValueError(f'Vectors of different lengths are not supported. '
-                         f'Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}')
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
 
     vec_len = len(vec1)
 
