@@ -60,7 +60,6 @@ def test_distLInf():
         febrl_math.distLInf([0, 0], [0, 0, 0])
 
 
-
 def test_cosine_similarity():
     """
     - distL2 should raise a Value Exception if vector lengths are not the same.
@@ -74,7 +73,9 @@ def test_cosine_similarity():
 
     assert febrl_math.cosine_similarity([0, 0], [0, 0]) == 0  # Zero Vector
     assert febrl_math.cosine_similarity([1, 0], [0, 5]) == 0  # Orthogonal Vectors
-    assert round(febrl_math.cosine_similarity([1, 3], [2, 5]), 5) == 0.99827  # 0.99827437317499593042850507243421
+    assert (
+        round(febrl_math.cosine_similarity([1, 3], [2, 5]), 5) == 0.99827
+    )  # 0.99827437317499593042850507243421
     assert febrl_math.cosine_similarity([-3, -3], [3, 3]) == -1  # Opposite Vectors
     assert febrl_math.cosine_similarity([0, -3], [3, 0]) == 0  # Orthogonal
 

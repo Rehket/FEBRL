@@ -137,6 +137,7 @@ def distCanberra(vec1, vec2):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+
 def cosine_similarity(vec1: list, vec2: list) -> float:
     """
     Calculates and returns the cosine similarity between two vectors
