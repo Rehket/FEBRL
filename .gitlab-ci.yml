@@ -3,3 +3,9 @@ python36_test:
   script:
     - pip install -r req.txt
     - pytest
+
+python37_test:
+  image: python:3.7.2-alpine3.9
+  script:
+    - pip install -r req.txt
+    - pytest
