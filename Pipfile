@@ -7,7 +7,11 @@ verify_ssl = true
 pytest = "*"
 pytest-cov = "*"
 sphinx = "*"
+coveralls = "*"
 
 [packages]
 
 [requires]
+
+[pipenv]
+allow_prereleases = true
