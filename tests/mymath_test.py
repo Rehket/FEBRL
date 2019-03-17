@@ -1,7 +1,6 @@
 
 from febrl import mymath
-
-
+import pytest
 
 def test_distL1():
     """
@@ -16,3 +15,6 @@ def test_distL1():
     assert mymath.distL1([0, 0], [0, 0]) == 0
     assert mymath.distL1([0, 0], [0, 5]) == 5
     assert mymath.distL1([-3, -3], [3, 3]) == 12
+
+    with pytest.raises(ValueError) as e_info:
+        mymath.distL1([0, 0], [0, 0, 0])
