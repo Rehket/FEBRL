@@ -22,19 +22,19 @@ import random
 def distL1(vec1: list, vec2: list) -> float:
 
     """
-        L1 distance measure, also called Manhattan distance.
+    L1 distance measure, also called Manhattan distance.
 
-        The distance between two points measured along axes at right angles.
+    The distance between two points measured along axes at right angles.
 
-        See also:
-            http://www.nist.gov/dads/HTML/lmdistance.html
-            http://en.wikipedia.org/wiki/Distance
+    See also:
+        http://www.nist.gov/dads/HTML/lmdistance.html
+        http://en.wikipedia.org/wiki/Distance
 
-        Assumes the vectors are the same length.
+    Assumes the vectors are the same length.
 
     :param vec1: A list representing a point in len(vec1) dimensions
     :param vec2: A list representing a point in len(vec2) dimensions
-    :return: The Distance between vec1 and vec2
+    :return: The L1 Distance between vec1 and vec2
     """
 
     if len(vec1) != len(vec2):
@@ -54,25 +54,35 @@ def distL1(vec1: list, vec2: list) -> float:
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-def distL2(vec1, vec2):
-    """L2 distance measure, also known as the Euclidean distance.
+def distL2(vec1: list, vec2: list) -> float:
 
-       See also:
-         http://www.nist.gov/dads/HTML/lmdistance.html
-         http://en.wikipedia.org/wiki/Distance
+    """
+    L2 distance measure, also known as the Euclidean distance.
+
+    See also:
+        http://www.nist.gov/dads/HTML/lmdistance.html
+        http://en.wikipedia.org/wiki/Distance
+
+    Assumes the vectors are the same length.
+
+    :param vec1: A list representing a point in len(vec1) dimensions
+    :param vec2: A list representing a point in len(vec2) dimensions
+    :return: The L2 Distance between vec1 and vec2
     """
 
-    #  assert len(vec1) == len(vec2)
+    if len(vec1) != len(vec2):
+        raise ValueError(f'Vectors of different length are not supported. '
+                         f'Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}')
 
     vec_len = len(vec1)
 
-    L2_dist = 0.0
+    L2_distance = 0.0
 
     for i in range(vec_len):
         x = float(vec1[i]) - float(vec2[i])
-        L2_dist += x * x
+        L2_distance += x * x
 
-    return math.sqrt(L2_dist)
+    return math.sqrt(L2_distance)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
