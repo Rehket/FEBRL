@@ -1,1 +1,5 @@
-A fork of the FEBRL Project, http://users.cecs.anu.edu.au/~Peter.Christen/Febrl/febrl-0.3/febrldoc-0.3/manual.html
+# Contributors
+- Peter Christen
+- Adam Albright
+
+
