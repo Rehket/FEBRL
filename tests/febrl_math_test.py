@@ -44,15 +44,6 @@ def test_distL2():
 
 
 def test_distLInf():
-    """
-    - distL2 should raise a Value Exception if vector lengths are not the same.
-    - For a vectors <0, 0> and <0, 0>, result should be 0 => |0 - 0|
-    - For a vectors <0, 0> and <0, 5>, result should be 5 => |5 - 1|
-    - For a vectors <-3, -3> and <3, 3>, result should be 6 => |3 - (-3)|
-    - For a vectors <0, -3> and <3, 0>, result should be 3 => |0 - (-3)|
-
-    :return:
-    """
 
     assert febrl_math.distLInf([0, 0], [0, 0]) == 0
     assert febrl_math.distLInf([0, 0], [0, 5]) == 5
@@ -64,15 +55,6 @@ def test_distLInf():
 
 
 def test_cosine_similarity():
-    """
-    - distL2 should raise a Value Exception if vector lengths are not the same.
-    - For a vectors <0, 0> and <0, 0>, result should be 0 => |0 - 0|
-    - For a vectors <0, 0> and <0, 5>, result should be 5 => |5 - 1|
-    - For a vectors <-3, -3> and <3, 3>, result Raise value exception
-    - For a vectors <0, -3> and <3, 0>, result Raise value exception
-
-    :return:
-    """
 
     assert febrl_math.cosine_similarity([0, 0], [0, 0]) == 0  # Zero Vector
     assert febrl_math.cosine_similarity([1, 0], [0, 5]) == 0  # Orthogonal Vectors
@@ -87,15 +69,6 @@ def test_cosine_similarity():
 
 
 def test_distCosine():
-    """
-    - distL2 should raise a Value Exception if vector lengths are not the same.
-    - For a vectors <0, 0> and <0, 0>, result should be 0 => |0 - 0|
-    - For a vectors <0, 0> and <0, 5>, result should be 5 => |5 - 1|
-    - For a vectors <-3, -3> and <3, 3>, result Raise value exception
-    - For a vectors <0, -3> and <3, 0>, result Raise value exception
-
-    :return:
-    """
 
     assert febrl_math.dist_cosine([0, 0], [0, 0]) == 1
     assert febrl_math.dist_cosine([1, 0], [0, 5]) == 1
@@ -104,4 +77,26 @@ def test_distCosine():
     with pytest.raises(ValueError) as e_info:
         febrl_math.dist_cosine([-3, -3], [3, 3])
         febrl_math.dist_cosine([0, -3], [3, 0])
+        febrl_math.dist_cosine([0, 0], [0, 0, 0])
+
+
+def test_dist_canberra():
+    """
+    - dist_canberra should raise a Value Exception if vector lengths are not the same.
+    - For a vectors <0, 0> and <0, 0>, result should be 0
+    - For a vectors <0, 0> and <0, 5>, result should be 2
+    - For a vectors <-3, -3> and <3, 3>, result should be 2
+    - For a vectors <0, -3> and <3, 0>, result should be 2
+    - For a vectors <1, -3> and <3, 2>, result should be 1.5
+
+    :return:
+    """
+
+    assert febrl_math.dist_canberra([0, 0], [0, 0]) == 0
+    assert febrl_math.dist_canberra([1, 0], [0, 5]) == 2
+    assert febrl_math.dist_canberra([-3, -3], [3, 3]) == 2
+    assert febrl_math.dist_canberra([0, -3], [3, 0]) == 2
+    assert febrl_math.dist_canberra([1, -3], [3, 2]) == 1.5
+
+    with pytest.raises(ValueError) as e_info:
         febrl_math.dist_cosine([0, 0], [0, 0, 0])

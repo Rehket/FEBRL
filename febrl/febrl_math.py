@@ -113,26 +113,35 @@ def distLInf(vec1, vec2):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-def distCanberra(vec1, vec2):
-    """Canberra distance measure.
+def dist_canberra(vec1, vec2):
 
-       See also:
-       http://people.revoledu.com/kardi/tutorial/Similarity/CanberraDistance.html
+    """
+    Canberra distance measure.
+        See also:
+            https://en.wikipedia.org/wiki/Canberra_distance
+
+    :param vec1:
+    :param vec2:
+    :return:
     """
 
-    #  assert len(vec1) == len(vec2)
+    if len(vec1) != len(vec2):
+        raise ValueError(
+            f"Vectors of different lengths are not supported. "
+            f"Length of vec1: {len(vec1)}, Length of vec2: {len(vec2)}"
+        )
 
-    vec_len = len(vec1)
+    combine_vector = zip(vec1, vec2)
 
-    cbr_dist = 0.0
+    canberra_distance = 0.0
 
-    for i in range(vec_len):
-        x = abs(float(vec1[i]) - float(vec2[i]))
-        y = abs(float(vec1[i])) + abs(float(vec2[i]))
-        if y > 0.0:
-            cbr_dist += x / y
+    for vec in combine_vector:
+        num = abs(float(vec[0]) - float(vec[1]))
+        denom = abs(float(vec[0])) + abs(float(vec[1]))
+        if denom != 0:
+            canberra_distance += num / denom
 
-    return cbr_dist
+    return canberra_distance
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
