@@ -6,7 +6,7 @@ febrl_math.py: File for different math calculations used in febrl
 import math
 
 
-def distL1(vec1: list, vec2: list) -> float:
+def dist_l1(vec1: list, vec2: list) -> float:
 
     """
     L1 distance measure, also called Manhattan distance.
@@ -43,7 +43,7 @@ def distL1(vec1: list, vec2: list) -> float:
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-def distL2(vec1: list, vec2: list) -> float:
+def dist_l2(vec1: list, vec2: list) -> float:
 
     """
     L2 distance measure, also known as the Euclidean distance.
@@ -79,7 +79,7 @@ def distL2(vec1: list, vec2: list) -> float:
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-def distLInf(vec1, vec2):
+def dist_L_inf(vec1, vec2):
 
     """
     L-Infinity distance measure. The maximum absolute difference between
@@ -231,8 +231,9 @@ def dist_cosine(vec1, vec2):
 ## TODO, PC Jan 2008 ***********
 
 
-def distMahalanobis(vec1, vec2):
-    """Mahalanobis distance measure.
+def dist_mahalanobis(vec1, vec2):
+    """
+    Mahalanobis distance measure.
 
        See also:
          http://en.wikipedia.org/wiki/Mahalanobis_distance

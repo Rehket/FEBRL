@@ -1,49 +1,13 @@
-# =============================================================================
-# AUSTRALIAN NATIONAL UNIVERSITY OPEN SOURCE LICENSE (ANUOS LICENSE)
-# VERSION 1.3
+# Licensed under GPLv3, please reference LICENSE for more details.
 #
-# The contents of this file are subject to the ANUOS License Version 1.3
-# (the "License"); you may not use this file except in compliance with
-# the License. You may obtain a copy of the License at:
-#
-#   https://sourceforge.net/projects/febrl/
-#
-# Software distributed under the License is distributed on an "AS IS"
-# basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
-# the License for the specific language governing rights and limitations
-# under the License.
-#
-# The Original Software is: "trainhmm.py"
-#
-# The Initial Developer of the Original Software is:
-#   Dr Peter Christen (Research School of Computer Science, The Australian
-#                      National University)
-#
-# Copyright (C) 2002 - 2011 the Australian National University and
-# others. All Rights Reserved.
-#
-# Contributors:
-#
-# Alternatively, the contents of this file may be used under the terms
-# of the GNU General Public License Version 2 or later (the "GPL"), in
-# which case the provisions of the GPL are applicable instead of those
-# above. The GPL is available at the following URL: http://www.gnu.org/
-# If you wish to allow use of your version of this file only under the
-# terms of the GPL, and not to allow others to use your version of this
-# file under the terms of the ANUOS License, indicate your decision by
-# deleting the provisions above and replace them with the notice and
-# other provisions required by the GPL. If you do not delete the
-# provisions above, a recipient may use your version of this file under
-# the terms of any one of the ANUOS License or the GPL.
-# =============================================================================
-#
-# Freely extensible biomedical record linkage (Febrl) - Version 0.4.2
+# Freely extensible biomedical record linkage (Febrl)
 #
 # See: http://datamining.anu.edu.au/linkage.html
 #
 # =============================================================================
 
-"""Module trainhmm.py - Main module to train a Hidden Markov Model (HMM)
+"""
+    Module trainhmm.py - Main module to train a Hidden Markov Model (HMM)
 
    DESCRIPTION:
      This module can be used to train a Hidden Markov Model (HMM) using tagged
@@ -100,7 +64,6 @@
 # Import necessary modules (Python standard modules first, then Febrl modules)
 
 import sys
-import time
 
 import simplehmm
 

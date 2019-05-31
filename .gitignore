@@ -61,3 +61,4 @@ junit/
 tests/__pycache__/
 
 /.coverage
+/febrl3.egg-info/

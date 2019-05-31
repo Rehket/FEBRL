@@ -18,76 +18,83 @@ import logging
 import math
 import random
 
+from typing import List, Optional, Union
 
-def mean(x):
-    """Compute the mean (average)  of a list of numbers.
+Num = Union[int, float]
+
+
+def mean(list_of_numbers: List[Num]) -> Optional[float]:
+    """
+    Compute the mean (average) of a list of numbers.
+    :param list_of_numbers: The list of numbers.
+    :return:
     """
 
-    if len(x) == 1:  # Only one element in list
-        return float(x[0])
+    if len(list_of_numbers) == 1:  # Only one element in list
+        return float(list_of_numbers[0])
 
-    elif len(x) == 0:  # Empty list
-        logging.info("Empty list given: %s" % (str(x)))
+    elif len(list_of_numbers) == 0:  # Empty list
+        logging.info(f"Empty list given: {list_of_numbers}")
         return None
 
     else:  # Calculate average
-        sum = 0.0
-        for i in x:
-            sum += i
+        sum_total = math.fsum(list_of_numbers)
 
-        res = sum / float(len(x))
-
-        return res
+        return float(sum_total / len(list_of_numbers))
 
 
 # =============================================================================
 
 
-def stddev(x):
-    """Compute the standard deviation of a list of numbers.
+def stddev(list_of_numbers: List[Num]) -> Optional[float]:
+
+    """
+    Compute the standard deviation of a list of numbers.
+    :param list_of_numbers:
+    :return:
     """
 
-    if len(x) == 1:  # Only one element in list
+    if len(list_of_numbers) == 1:  # Only one element in list
         return 0.0
 
-    elif len(x) == 0:  # Empty list
-        logging.info("Empty list given: %s" % (str(x)))
+    elif len(list_of_numbers) == 0:  # Empty list
+        logging.info(f"Empty list given: {list_of_numbers}")
         return None
 
     else:
-        sum = 0.0
+        sum_total = 0.0
+        for i in list_of_numbers:
+            sum_total += i
+
+        avrg = sum_total / float(len(list_of_numbers))
+
+        sum_total = 0.0
         for i in x:
-            sum += i
+            sum_total = sum_total + (i - avrg) * (i - avrg)
 
-        avrg = sum / float(len(x))
-
-        sum = 0.0
-        for i in x:
-            sum = sum + (i - avrg) * (i - avrg)
-
-        res = math.sqrt(sum / float(len(x)))
+        res = math.sqrt(sum_total / float(len(list_of_numbers)))
 
         return res
 
 
 # =============================================================================
 
-
-def log2(x):
-    """Compute binary logarithm (log2) for a floating-point number.
-
-    USAGE:
-      y = log2(x)
-
-    ARGUMENT:
-      x  An positive integer or floating-point number
-
-    DESCRIPTION:
-      This routine computes and returns the binary logarithm of a positive
-      number.
-    """
-
-    return math.log(x) / 0.69314718055994529  # = math.log(2.0)
+# TODO: Switch Occurrences with math.log2()
+# def log2(x):
+#     """Compute binary logarithm (log2) for a floating-point number.
+#
+#     USAGE:
+#       y = log2(x)
+#
+#     ARGUMENT:
+#       x  An positive integer or floating-point number
+#
+#     DESCRIPTION:
+#       This routine computes and returns the binary logarithm of a positive
+#       number.
+#     """
+#
+#     return math.log(x) / 0.69314718055994529  # = math.log(2.0)
 
 
 # =============================================================================
@@ -96,20 +103,20 @@ def log2(x):
 # http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/66463)
 
 
-def getPermutations(a):
+def get_permutations(a):
     if len(a) == 1:
         yield a
     else:
         for i in range(len(a)):
             this = a[i]
             rest = a[:i] + a[i + 1 :]
-            for p in getPermutations(rest):
+            for p in get_permutations(rest):
                 yield [this] + p
 
 
 def permute(alist):
     reslist = []
-    for l in getPermutations(alist):
+    for l in get_permutations(alist):
         reslist.append(" ".join(l))
 
     return reslist
@@ -119,27 +126,27 @@ def permute(alist):
 
 
 def perm_tag_sequence(in_tag_seq):
-    """Create all permuations of a tag sequence.
+
+    """
+    Create all permuations of a tag sequence.
 
     USAGE:
       seq_list = perm_tag_sequence(in_tag_seq)
-
-    ARGUMENT:
-      in_tag_seq  Input sequence (list) with tags
 
     DESCRIPTION:
       This routine computes all permutations of the given input sequence. More
       than one permutation is created if at least one element in the input
       sequence contains more than one tag.
 
-      Returns a list containing tag sequences (lists).
+    :param in_tag_seq: Input sequence (list) with tags
+    :return: A list containing tag sequences (lists).
     """
+
 
     if not isinstance(in_tag_seq, list):
         logging.exception("Input tag sequence is not a list: %s" % (str(in_tag_seq)))
         raise Exception
 
-    list_len = len(in_tag_seq)
     out_tag_seq = [[]]  # List of output tag sequences, start with one empty list
 
     for elem in in_tag_seq:
@@ -173,18 +180,20 @@ def perm_tag_sequence(in_tag_seq):
 
 
 def quantiles(in_data, quant_list):
-    """Compute the quantiles for the given input data.
+    """
+    Compute the quantiles for the given input data.
 
     USAGE:
       quant_val_list = quantiles(in_data, quant_list)
 
-    ARGUMENT:
-      in_data     A vector of numerical data, e.g. frequency counts
-      quant_list  A list with quantile values, e.g. [0.5,0.25,0.50,0.75,0.95]
-
     DESCRIPTION:
       This routine computes and returns the values for the given quantiles and
-      the give ndata.
+      the give n data.
+
+    :param in_data: A vector of numerical data, e.g. frequency counts
+    :param quant_list: A list with quantile values, e.g. [0.5,0.25,0.50,0.75,0.95]
+    :return:
+
     """
 
     len_in_data = len(in_data)
@@ -196,8 +205,8 @@ def quantiles(in_data, quant_list):
 
     for quant in quant_list:
         if (quant < 0.0) or (quant > 1.0):
-            logging.exception("Quantile value not between 0 and 1: %f" % (quant))
-            raise Exception
+            logging.exception(f"Quantile value not between 0 and 1: {quant}")
+            raise Exception(f"Quantile value not between 0 and 1: {quant}")
 
         quant_ind = float(quant * (len_in_data - 1))  # Adjust for index start 0!
 
@@ -257,7 +266,7 @@ def random_expo(n):  # Return expnential distribution
 # changed: "import math as _math" as math already imported, then changed all
 #          references of _math to math.
 
-
+# TODO: Why not the built in one?
 def _gcd(a, b):
     if a > b:
         b, a = a, b
@@ -372,6 +381,7 @@ def _approximate(n, d, err):
 # 		return r
 
 
+# TODO: Why not use the builtin rational?
 class _Rational:
     def __init__(self, n, d):
         if d == 0:
