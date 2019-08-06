@@ -87,7 +87,6 @@ def perm_tag_sequence(in_tag_seq):
     :return: A list containing tag sequences (lists).
     """
 
-
     if not isinstance(in_tag_seq, list):
         logging.exception("Input tag sequence is not a list: %s" % (str(in_tag_seq)))
         raise Exception
@@ -124,6 +123,8 @@ def perm_tag_sequence(in_tag_seq):
 # =============================================================================
 
 
+# TODO: Write a function to find a quantile.
+
 def quantiles(in_data, quant_list):
     """
     Compute the quantiles for the given input data.
@@ -142,9 +143,7 @@ def quantiles(in_data, quant_list):
     """
 
     len_in_data = len(in_data)
-
-    sort_data = in_data[:]  # Make a copy of the list
-    sort_data.sort()
+    in_data.sort()
 
     val_data = []
 
@@ -153,24 +152,22 @@ def quantiles(in_data, quant_list):
             logging.exception(f"Quantile value not between 0 and 1: {quant}")
             raise Exception(f"Quantile value not between 0 and 1: {quant}")
 
-        quant_ind = float(quant * (len_in_data - 1))  # Adjust for index start 0!
+        quant_ind = quant * (len_in_data - 1)  # Adjust for index start 0!
 
         quant_ind_floor = math.floor(quant_ind)
         quant_ind_int = int(quant_ind_floor)
 
         if quant_ind == quant_ind_floor:  # Check for fractionals
-            val_data.append(sort_data[quant_ind_int])
+            val_data.append(in_data[quant_ind_int])
         else:
             quant_ind_frac = quant_ind - quant_ind_floor  # Fractional part
 
-            tmp_val1 = sort_data[quant_ind_int]
-            tmp_val2 = sort_data[quant_ind_int + 1]
+            tmp_val1 = in_data[quant_ind_int]
+            tmp_val2 = in_data[quant_ind_int + 1]
 
             tmp_val = tmp_val1 + (tmp_val2 - tmp_val1) * quant_ind_frac
 
             val_data.append(tmp_val)
-
-    del sort_data  # Delete local copy of list
 
     return val_data
 
@@ -186,7 +183,7 @@ def random_linear(n):  # Return triangle distribution
        with p(n) < p(m) if n < m.
     """
 
-    return math.sqrt(random.random() * (n) ** 2)
+    return math.sqrt(random.random() * n ** 2)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -198,7 +195,7 @@ def random_expo(n):  # Return expnential distribution
 
     r = n * random.expovariate(10.0)
 
-    while r >= n:  # make sure r is not too large
+    while r >= n:  # make sure r is not too large.. What is this doing?
         r = n * random.expovariate(10.0)
 
     return r
@@ -211,23 +208,24 @@ def random_expo(n):  # Return expnential distribution
 # changed: "import math as _math" as math already imported, then changed all
 #          references of _math to math.
 
-# TODO: Why not the built in one?
-def _gcd(a, b):
-    if a > b:
-        b, a = a, b
-    if a == 0:
-        return b
-    while 1:
-        c = b % a
-        if c == 0:
-            return a
-        b = a
-        a = c
+# Why not the built in one? -> was introduced in 3.5
+# def _gcd(a, b):
+#     if a > b:
+#         b, a = a, b
+#     if a == 0:
+#         return b
+#     while 1:
+#         c = b % a
+#         if c == 0:
+#             return a
+#         b = a
+#         a = c
 
 
 def _trim(n, d, max_d):
     if max_d == 1:
         return n / d, 1
+
     last_n, last_d = 0, 1
     current_n, current_d = 1, 0
     while 1:
@@ -240,6 +238,7 @@ def _trim(n, d, max_d):
         current_n, current_d = next_n, next_d
         if mod == 0 or current_d >= max_d:
             break
+
     if current_d == max_d:
         return current_n, current_d
     i = (max_d - before_last_d) / last_d
@@ -271,61 +270,6 @@ def _approximate(n, d, err):
     return app
 
 
-# def _float_to_ratio(x):
-# 	"""\
-# 	x -> (top, bot), a pair of co-prime longs s.t. x = top/bot.
-#
-# 	The conversion is done exactly, without rounding.
-# 	bot > 0 guaranteed.
-# 	Some form of binary fp is assumed.
-# 	Pass NaNs or infinities at your own risk.
-#
-# 	>>> rational(10.0)
-# 	rational(10L, 1L)
-# 	>>> rational(0.0)
-# 	rational(0L)
-# 	>>> rational(-.25)
-# 	rational(-1L, 4L)
-# 	"""
-#
-# 	if x == 0:
-# 		return 0L, 1L
-# 	signbit = 0
-# 	if x < 0:
-# 		x = -x
-# 		signbit = 1
-# 	f, e = math.frexp(x)
-# 	assert 0.5 <= f < 1.0
-# 	# x = f * 2**e exactly
-#
-# 	# Suck up CHUNK bits at a time; 28 is enough so that we suck
-# 	# up all bits in 2 iterations for all known binary double-
-# 	# precision formats, and small enough to fit in an int.
-# 	CHUNK = 28
-# 	top = 0L
-# 	# invariant: x = (top + f) * 2**e exactly
-# 	while f:
-# 		f = math.ldexp(f, CHUNK)
-# 		digit = int(f)
-# 		assert digit >> CHUNK == 0
-# 		top = (top << CHUNK) | digit
-# 		f = f - digit
-# 		assert 0.0 <= f < 1.0
-# 		e = e - CHUNK
-# 	assert top
-#
-# 	# now x = top * 2**e exactly; fold in 2**e
-# 	r = _Rational(top, 1)
-# 	if e>0:
-# 		r = r << e
-# 	else:
-# 		r = r >> -e
-# 	if signbit:
-# 		return -r
-# 	else:
-# 		return r
-
-
 # TODO: Why not use the builtin rational?
 class _Rational:
     def __init__(self, n, d):
@@ -335,7 +279,7 @@ class _Rational:
         if d < 0:
             n *= -1
             d *= -1
-        f = _gcd(abs(n), d)
+        f = math.gcd(abs(n), d)
         self.n = n / f
         self.d = d / f
 
@@ -349,16 +293,16 @@ class _Rational:
             return str(self.n)
         return "%(n)s/%(d)s" % self.__dict__
 
-    def __coerce__(self, other):
-        for int in (type(1), type(1)):
-            if isinstance(other, int):
-                return self, rational(other)
-        if type(other) == type(1.0):
-            return float(self), other
-        return NotImplemented
+    # def __coerce__(self, other):
+    #     for int_num in (type(1), type(1)):
+    #         if isinstance(other, int):
+    #             return self, rational(other)
+    #     if type(other) == type(1.0):
+    #         return float(self), other
+    #     return NotImplemented
 
-    def __rcoerce__(self, other):
-        return coerce(self, other)
+    # def __rcoerce__(self, other):
+    #     return coerce(self, other)
 
     def __add__(self, other):
         return _Rational(self.n * other.d + other.n * self.d, self.d * other.d)
