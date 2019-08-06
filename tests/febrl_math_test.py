@@ -5,9 +5,9 @@ from febrl import febrl_math
 import pytest
 
 
-def test_distL1():
+def test_dist_l1():
     """
-    - distL1 should raise a Value Exception if vector lengths are not the same.
+    - dist_l1 should raise a Value Exception if vector lengths are not the same.
     - For a vectors <0, 0> and <0, 0>, result should be 0
     - For a vectors <0, 0> and <0, 5>, result should be 5
     - For a vectors <-3, -3> and <3, 3>, result should be 12
@@ -15,17 +15,17 @@ def test_distL1():
     :return:
     """
 
-    assert febrl_math.distL1([0, 0], [0, 0]) == 0
-    assert febrl_math.distL1([0, 0], [0, 5]) == 5
-    assert febrl_math.distL1([-3, -3], [3, 3]) == 12
+    assert febrl_math.dist_l1([0, 0], [0, 0]) == 0
+    assert febrl_math.dist_l1([0, 0], [0, 5]) == 5
+    assert febrl_math.dist_l1([-3, -3], [3, 3]) == 12
 
     with pytest.raises(ValueError) as e_info:
-        febrl_math.distL1([0, 0], [0, 0, 0])
+        febrl_math.dist_l1([0, 0], [0, 0, 0])
 
 
-def test_distL2():
+def test_dist_l2():
     """
-    - distL2 should raise a Value Exception if vector lengths are not the same.
+    - dist_l2 should raise a Value Exception if vector lengths are not the same.
     - For a vectors <0, 0> and <0, 0>, result should be 0
     - For a vectors <0, 0> and <0, 5>, result should be 5
     - For a vectors <-3, -3> and (3, 3>, result should be 8.4853
@@ -33,25 +33,25 @@ def test_distL2():
     :return:
     """
 
-    assert febrl_math.distL2([0, 0], [0, 0]) == 0
-    assert febrl_math.distL2([0, 0], [0, 5]) == 5
+    assert febrl_math.dist_l2([0, 0], [0, 0]) == 0
+    assert febrl_math.dist_l2([0, 0], [0, 5]) == 5
     assert (
-        round(febrl_math.distL2([-3, -3], [3, 3]), 4) == 8.4853
+        round(febrl_math.dist_l2([-3, -3], [3, 3]), 4) == 8.4853
     )  # 8.4852813742385702928101323452582
 
     with pytest.raises(ValueError) as e_info:
-        febrl_math.distL2([0, 0], [0, 0, 0])
+        febrl_math.dist_l2([0, 0], [0, 0, 0])
 
 
-def test_distLInf():
+def test_dist_L_inf():
 
-    assert febrl_math.distLInf([0, 0], [0, 0]) == 0
-    assert febrl_math.distLInf([0, 0], [0, 5]) == 5
-    assert febrl_math.distLInf([-3, -3], [3, 3]) == 6
-    assert febrl_math.distLInf([0, -3], [3, 0]) == 3
+    assert febrl_math.dist_L_inf([0, 0], [0, 0]) == 0
+    assert febrl_math.dist_L_inf([0, 0], [0, 5]) == 5
+    assert febrl_math.dist_L_inf([-3, -3], [3, 3]) == 6
+    assert febrl_math.dist_L_inf([0, -3], [3, 0]) == 3
 
     with pytest.raises(ValueError) as e_info:
-        febrl_math.distLInf([0, 0], [0, 0, 0])
+        febrl_math.dist_L_inf([0, 0], [0, 0, 0])
 
 
 def test_cosine_similarity():
@@ -100,3 +100,41 @@ def test_dist_canberra():
 
     with pytest.raises(ValueError) as e_info:
         febrl_math.dist_cosine([0, 0], [0, 0, 0])
+
+
+def test_standard_deviation():
+    """
+    - standard_deviation return 0 if the numbers of numbers in the list is 1.
+    - Raises value exception is the list is empty.
+    - Raises TypeError exception if a non numeric is in the list.
+    - Return the standard deviation of the number otherwise.
+    :return:
+    """
+
+    assert febrl_math.standard_deviation([1, 1, 1, 1]) == 0
+    assert round(febrl_math.standard_deviation([6, 2, 3, 1]), 5) == 1.87083
+    with pytest.raises(ValueError) as e_info:
+        febrl_math.standard_deviation([])
+    with pytest.raises(TypeError) as e_info:
+        febrl_math.standard_deviation(["foo", 1, 2])
+        febrl_math.standard_deviation([1, "foo",])
+
+
+def test_mean():
+
+    """
+    - mean of 1 number is the number
+    - Raises value exception is the list is empty.
+    - Raises value TypeError if a non numeric is in the list.
+    - Return the mean of the numbers otherwise.
+    :return:
+    """
+
+    assert febrl_math.mean([1, 1, 1, 1]) == 1
+    assert febrl_math.mean([6, 2, 3, 1]) == 3
+    assert round(febrl_math.mean([-2, 2, 1]), 2) == 0.33
+    with pytest.raises(ValueError) as e_info:
+        febrl_math.mean([])
+    with pytest.raises(TypeError) as e_info:
+        febrl_math.mean(["foo", 1, 2])
+        febrl_math.mean([1, "foo",])

@@ -22,61 +22,6 @@ from typing import List, Optional, Union
 
 Num = Union[int, float]
 
-
-def mean(list_of_numbers: List[Num]) -> Optional[float]:
-    """
-    Compute the mean (average) of a list of numbers.
-    :param list_of_numbers: The list of numbers.
-    :return:
-    """
-
-    if len(list_of_numbers) == 1:  # Only one element in list
-        return float(list_of_numbers[0])
-
-    elif len(list_of_numbers) == 0:  # Empty list
-        logging.info(f"Empty list given: {list_of_numbers}")
-        return None
-
-    else:  # Calculate average
-        sum_total = math.fsum(list_of_numbers)
-
-        return float(sum_total / len(list_of_numbers))
-
-
-# =============================================================================
-
-
-def stddev(list_of_numbers: List[Num]) -> Optional[float]:
-
-    """
-    Compute the standard deviation of a list of numbers.
-    :param list_of_numbers:
-    :return:
-    """
-
-    if len(list_of_numbers) == 1:  # Only one element in list
-        return 0.0
-
-    elif len(list_of_numbers) == 0:  # Empty list
-        logging.info(f"Empty list given: {list_of_numbers}")
-        return None
-
-    else:
-        sum_total = 0.0
-        for i in list_of_numbers:
-            sum_total += i
-
-        avrg = sum_total / float(len(list_of_numbers))
-
-        sum_total = 0.0
-        for i in x:
-            sum_total = sum_total + (i - avrg) * (i - avrg)
-
-        res = math.sqrt(sum_total / float(len(list_of_numbers)))
-
-        return res
-
-
 # =============================================================================
 
 # TODO: Switch Occurrences with math.log2()

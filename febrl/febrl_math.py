@@ -2,8 +2,11 @@
 febrl_math.py: File for different math calculations used in febrl
 
 """
-
+import logging
 import math
+from typing import List, Optional, Union
+
+Num = Union[int, float]
 
 
 def dist_l1(vec1: list, vec2: list) -> float:
@@ -228,7 +231,7 @@ def dist_cosine(vec1, vec2):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## TODO, PC Jan 2008 ***********
+# TODO, PC SOMEDAY T_T, GOTTA learn me some PCA to grok this.
 
 
 def dist_mahalanobis(vec1, vec2):
@@ -246,3 +249,49 @@ def dist_mahalanobis(vec1, vec2):
     mal_dist = 0.0
 
     return mal_dist
+
+
+def standard_deviation(list_of_numbers: List[Num]) -> Optional[float]:
+
+    """
+    Compute the standard deviation of a list of numbers.
+    1. Compute the average.
+    2. Square the difference between each number and the average and sum them all together.
+    2. Divide the sum of squares over the count of numbers.
+    4. Take the square root the (ss over count)
+    :param list_of_numbers:
+    :return: The computed standard deviation.
+    """
+
+    if len(list_of_numbers) == 1:  # Only one element in list
+        return 0.0
+
+    elif len(list_of_numbers) == 0:  # Empty list
+        raise ValueError(f"Empty list given: {list_of_numbers}")
+
+    else:
+        sum_total = sum(list_of_numbers)
+        average = sum_total / len(list_of_numbers)
+        ss = sum([(i - average)**2 for i in list_of_numbers])
+        return math.sqrt(ss / len(list_of_numbers))
+
+
+def mean(list_of_numbers: List[Num]) -> Optional[float]:
+    """
+    Compute the mean (average) of a list of numbers.
+    :param list_of_numbers: The list of numbers.
+    :return:
+    """
+
+    if len(list_of_numbers) == 1:  # Only one element in list
+        return float(list_of_numbers[0])
+
+    elif len(list_of_numbers) == 0:  # Empty list
+        raise ValueError(f"Empty list given: {list_of_numbers}")
+
+    else:  # Calculate average
+        sum_total = math.fsum(list_of_numbers)
+
+        return sum_total / len(list_of_numbers)
+
+
