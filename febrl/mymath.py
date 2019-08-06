@@ -17,7 +17,7 @@
 import logging
 import math
 import random
-
+from fractions import Fraction
 from typing import List, Optional, Union
 
 Num = Union[int, float]
@@ -498,13 +498,14 @@ def arith_coder_train(text):
 
     tot = 0
     probs = {}
-    prev = rational(0)
+    prev = Fraction(0)
     for c, count in list(counts.items()):
-        next = rational(tot + count, tot_letters)
-        probs[c] = (prev, next)
-        prev = next
+        next_val = Fraction(tot + count, tot_letters)
+        probs[c] = (prev, next_val)
+        prev = next_val
         tot = tot + count
-    assert tot == tot_letters
+    if tot != tot_letters:
+        raise RuntimeError("Something broke :/")
 
     return probs
 
@@ -518,8 +519,8 @@ def arith_coder_encode(text, probs):
     The encoded number is rational(longval, 2**nbits)
     """
 
-    minval = rational(0)
-    maxval = rational(1)
+    minval = Fraction(0.0)
+    maxval = Fraction(1.0)
     for c in text + "\x00":
         prob_range = probs[c]
         delta = maxval - minval
