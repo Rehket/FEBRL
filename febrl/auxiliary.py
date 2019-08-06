@@ -424,10 +424,10 @@ def str_vector(vec, num_digits=4, keep_int=True):
         if x == int(x):
             x = int(x)  # Make it an integer
 
-        if (keep_int == True) and (isinstance(x, int)):
-            vec_str = vec_str + "%d, " % (x)
+        if (keep_int is True) and (isinstance(x, int)):
+            vec_str = vec_str.join(f"{x}, ")
         else:
-            val_str = "%f" % (x)
+            val_str = f"{float(x)}"
             vec_str += val_str[: val_str.index(".") + num_digits + 1] + ", "
 
     return vec_str[:-2] + "]"
