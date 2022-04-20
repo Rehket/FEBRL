@@ -967,7 +967,7 @@ def error_character(input_char, char_range):
         if (input_char.isdigit()) and (rand_num <= single_typo_prob["same_row"]):
             output_char = random.choice(rows[input_char])
         else:
-            choice_str = string.replace(string.digits, input_char, "")
+            choice_str = string.digits.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen digit
 
     elif char_range == "alpha":
@@ -984,7 +984,7 @@ def error_character(input_char, char_range):
         ):
             output_char = random.choice(cols[input_char])
         else:
-            choice_str = string.replace(string.lowercase, input_char, "")
+            choice_str = string.ascii_lowercase.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen letter
 
     else:  # Both letters and digits possible
@@ -995,9 +995,8 @@ def error_character(input_char, char_range):
             if input_char in rows:
                 output_char = random.choice(rows[input_char])
             else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
+                choice_str = (string.ascii_lowercase + string.digits).replace(
+                    input_char, "")
                 output_char = random.choice(choice_str)  # A randomly choosen character
 
         # A randomly chosen neigbouring key in the same keyboard column
@@ -1006,15 +1005,12 @@ def error_character(input_char, char_range):
             if input_char in cols:
                 output_char = random.choice(cols[input_char])
             else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
+                choice_str = (string.ascii_lowercase + string.digits).replace(
+                    input_char, "")
                 output_char = random.choice(choice_str)  # A randomly choosen character
-
         else:
-            choice_str = string.replace(
-                string.lowercase + string.digits, input_char, ""
-            )
+            choice_str = (string.ascii_lowercase + string.digits).replace(
+                input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen character
 
     return output_char
@@ -1158,8 +1154,8 @@ def epoch_to_date(daynum):
 
     day = days - prior_month_days
 
-    day_str = string.zfill(str(day), 2)  # Add '0' if necessary
-    month_str = string.zfill(str(month), 2)  # Add '0' if necessary
+    day_str = str(day).zfill(2)  # Add '0' if necessary
+    month_str = str(month).zfill(2)  # Add '0' if necessary
     year_str = str(year)  # Is always four digits long
 
     return [day_str, month_str, year_str]
@@ -1922,11 +1918,9 @@ if num_dup_records < 0:
     print("Error: Number of duplicate records must be zero or positive")
     sys.exit()
 
-if (max_num_dups <= 0) or (max_num_dups > 9):
+if (max_num_dups <= 0):
     print(
-        "Error: Maximal number of duplicates per record must be positive "
-        + "and less than 10"
-    )
+        "Error: Maximal number of duplicates per record must be positive")
     sys.exit()
 
 if max_num_field_modifi <= 0:
@@ -2294,15 +2288,16 @@ for field_dict in field_list:
 
         if file_name != None:
             try:
-                fin = open(file_name)  # Open file for reading
+                fin = open(file_name, 'r')  # Open file for reading
             except:
                 print("  Error: Can not open frequency file %s" % (file_name))
                 raise Exception
             value_list = []  # List with all values of the frequency file
 
-            for line in fin:
+            for line in fin.readlines():
                 line = line.strip()
                 line_list = line.split(",")
+                print(line_list)
                 if len(line_list) != 2:
                     print(
                         "  Error: Illegal format in  frequency file %s: %s"
@@ -3278,21 +3273,21 @@ if num_of_hofam_duplicate > 0:
                         age_value = int(dup_rec_dict["age"].replace(blank_value, ""))
 
                         str_key = ""
-                        if (age >= 0) and (age <= 16):
+                        if (int(age) >= 0) and (int(age) <= 16):
                             str_key = "_0_16"
-                        elif (age >= 17) and (age <= 20):
+                        elif (int(age) >= 17) and (int(age) <= 20):
                             str_key = "_17_20"
-                        elif (age >= 21) and (age <= 25):
+                        elif (int(age) >= 21) and (int(age) <= 25):
                             str_key = "_21_25"
-                        elif (age >= 26) and (age <= 30):
+                        elif (int(age) >= 26) and (int(age) <= 30):
                             str_key = "_26_30"
-                        elif (age >= 31) and (age <= 40):
+                        elif (int(age) >= 31) and (int(age) <= 40):
                             str_key = "_31_40"
-                        elif (age >= 41) and (age <= 50):
+                        elif (int(age) >= 41) and (int(age) <= 50):
                             str_key = "_41_50"
-                        elif (age >= 51) and (age <= 60):
+                        elif (int(age) >= 51) and (int(age) <= 60):
                             str_key = "_51_60"
-                        elif age > 60:
+                        elif int(age) > 60:
                             str_key = "_more_60"
 
                         if family_role_to_create[dup_count] in [
@@ -3536,13 +3531,13 @@ if num_of_hofam_duplicate > 0:
                                     "daughter",
                                 ]:
                                     for fr in family_age_rec:
-                                        if (int(age) > family_age_rec[fr]) and (
+                                        if (int(age) > int(family_age_rec[fr])) and (
                                             fr
                                             in ["father", "mother", "husband", "wife"]
                                         ):
                                             age = str(family_age_rec[fr])
                                     rand_val = -1
-                                    while int(rand_val) <= 0:
+                                    while int(rand_val) < 0:
                                         if family_role in ["husband"]:
                                             gap = (
                                                 random_select(
@@ -3587,7 +3582,7 @@ if num_of_hofam_duplicate > 0:
                                     "sister",
                                 ]:
                                     rand_val = -1
-                                    while int(rand_val) <= 0:
+                                    while int(rand_val) < 0:
                                         sign_val = random.choice(list_age_gap)
                                         gap = (
                                             random_select(
@@ -4256,9 +4251,9 @@ if num_dup_records > 0:
                 if field_dict["char_range"] == "digit":
                     field_range = string.digits
                 elif field_dict["char_range"] == "alpha":
-                    field_range = string.lowercase
+                    field_range = string.ascii_lowercase
                 elif field_dict["char_range"] == "alphanum":
-                    field_range = string.digits + string.lowercase
+                    field_range = string.digits + string.ascii_lowercase
 
                 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 # Randomly select the number of modifications to be done in this field
