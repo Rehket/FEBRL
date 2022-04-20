@@ -145,6 +145,7 @@
      - Add random word spilling between fields (similar to field swapping)
 """
 
+
 # =============================================================================
 # Imports go here
 
@@ -318,13 +319,12 @@ givenname_dict = {
     "name": "given_name",
     "type": "freq",
     "char_range": "alpha",
-    "lookup_file": "data" + os.sep + "givenname-lookup.tbl",
-    "freq_file": "data" + os.sep + "givenname-freq.csv",
-    #             'freq_file':'data-org'+os.sep+'givenname.csv',
+    "lookup_file": f"data{os.sep}givenname-lookup.tbl",
+    "freq_file": f"data{os.sep}givenname-freq.csv",
     "select_prob": 0.10,
     "depend": "culture,sex",
     "depend_prob": 1.00,
-    "misspell_file": "data" + os.sep + "givenname-misspell.tbl",
+    "misspell_file": f"data{os.sep}givenname-misspell.tbl",
     "misspell_prob": 0.30,
     "ins_prob": 0.05,
     "del_prob": 0.15,
@@ -343,17 +343,17 @@ givenname_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 surname_dict = {
     "name": "surname",
     "type": "freq",
     "char_range": "alpha",
-    "lookup_file": "data" + os.sep + "surname-lookup.tbl",
-    "freq_file": "data" + os.sep + "surname-freq.csv",
-    #           'freq_file':'data-org'+os.sep+'surname.csv',
+    "lookup_file": f"data{os.sep}surname-lookup.tbl",
+    "freq_file": f"data{os.sep}surname-freq.csv",
     "select_prob": 0.09,
     "depend": "culture",
     "depend_prob": 1.00,
-    "misspell_file": "data" + os.sep + "surname-misspell.tbl",
+    "misspell_file": f"data{os.sep}surname-misspell.tbl",
     "misspell_prob": 0.30,
     "ins_prob": 0.10,
     "del_prob": 0.10,
@@ -372,13 +372,13 @@ surname_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 title_dict = {
     "name": "title",
     "type": "freq",
     "char_range": "alpha",
-    "lookup_file": "data" + os.sep + "title-sex-age-lookup-freq.tbl",
-    "freq_file": "data" + os.sep + "title-freq.csv",
-    #         'freq_file':'data-org'+os.sep+'title.csv',
+    "lookup_file": f"data{os.sep}title-sex-age-lookup-freq.tbl",
+    "freq_file": f"data{os.sep}title-freq.csv",
     "select_prob": 0.01,
     "depend": "sex,age",
     "depend_prob": 0.60,
@@ -400,12 +400,12 @@ title_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 streetnumber_dict = {
     "name": "street_number",
     "type": "freq",
     "char_range": "digit",
-    "freq_file": "data" + os.sep + "streetnumber-freq.csv",
-    #                'freq_file':'data-org'+os.sep+'streetnumber.csv',
+    "freq_file": f"data{os.sep}streetnumber-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -424,12 +424,12 @@ streetnumber_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 address1_dict = {
     "name": "address_1",
     "type": "freq",
     "char_range": "alpha",
-    "freq_file": "data" + os.sep + "address1-freq.csv",
-    #            'freq_file':'data-org'+os.sep+'address1.csv',
+    "freq_file": f"data{os.sep}address1-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -448,6 +448,7 @@ address1_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 # Address 2 contains property and institution names - only use rarely
 # (set missing probability to a high value)
 #
@@ -455,8 +456,7 @@ address2_dict = {
     "name": "address_2",
     "type": "freq",
     "char_range": "alpha",
-    "freq_file": "data" + os.sep + "address2-freq.csv",
-    #            'freq_file':'data-org'+os.sep+'address2.csv',
+    "freq_file": f"data{os.sep}address2-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.04,
     "del_prob": 0.04,
@@ -475,17 +475,17 @@ address2_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 suburb_dict = {
     "name": "suburb",
     "type": "freq",
     "char_range": "alpha",
-    "lookup_file": "data" + os.sep + "state-suburb-lookup.tbl",
-    "freq_file": "data" + os.sep + "suburb-freq.csv",
-    #          'freq_file':'data-org'+os.sep+'suburb.csv',
+    "lookup_file": f"data{os.sep}state-suburb-lookup.tbl",
+    "freq_file": f"data{os.sep}suburb-freq.csv",
     "select_prob": 0.10,
     "depend": "state",
     "depend_prob": 0.90,
-    "misspell_file": "data" + os.sep + "suburb-misspell.tbl",
+    "misspell_file": f"data{os.sep}suburb-misspell.tbl",
     "misspell_prob": 0.40,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -504,13 +504,13 @@ suburb_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 postcode_dict = {
     "name": "postcode",
     "type": "freq",
     "char_range": "digit",
-    "lookup_file": "data" + os.sep + "suburb-postcode-lookup.tbl",
-    "freq_file": "data" + os.sep + "postcode-freq.csv",
-    #            'freq_file':'data-org'+os.sep+'postcode.csv',
+    "lookup_file": f"data{os.sep}suburb-postcode-lookup.tbl",
+    "freq_file": f"data{os.sep}postcode-freq.csv",
     "select_prob": 0.05,
     "depend": "state,suburb",
     "depend_prob": 0.90,
@@ -530,12 +530,12 @@ postcode_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 state_dict = {
     "name": "state",
     "type": "freq",
     "char_range": "alpha",
-    "freq_file": "data" + os.sep + "state-freq.csv",
-    #         'freq_file':'data-org'+os.sep+'state.csv',
+    "freq_file": f"data{os.sep}state-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.10,
     "del_prob": 0.10,
@@ -553,6 +553,7 @@ state_dict = {
     "ocr_ins_sp_prob": 0.03,
     "ocr_del_sp_prob": 0.03,
 }
+
 
 dob_dict = {
     "name": "date_of_birth",
@@ -582,9 +583,9 @@ age_dict = {
     "name": "age",
     "type": "freq",
     "char_range": "digit",
-    "freq_file": "data" + os.sep + "age-freq.csv",
+    "freq_file": f"data{os.sep}age-freq.csv",
     "select_prob": 0.05,
-    "depend_prob": 1.00,  # Depends on date of birth
+    "depend_prob": 1.00,
     "ins_prob": 0.00,
     "del_prob": 0.00,
     "sub_prob": 0.30,
@@ -601,11 +602,12 @@ age_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 sex_dict = {
     "name": "sex",
     "type": "freq",
     "char_range": "alpha",
-    "freq_file": "data" + os.sep + "sex-freq.csv",
+    "freq_file": f"data{os.sep}sex-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.00,
     "del_prob": 0.00,
@@ -624,11 +626,12 @@ sex_dict = {
     "ocr_del_sp_prob": 0.03,
 }
 
+
 culture_dict = {
     "name": "culture",
     "type": "freq",
     "char_range": "alpha",
-    "freq_file": "data" + os.sep + "culture-freq.csv",
+    "freq_file": f"data{os.sep}culture-freq.csv",
     "select_prob": 0.00,
     "ins_prob": 0.00,
     "del_prob": 0.00,
@@ -646,6 +649,7 @@ culture_dict = {
     "ocr_ins_sp_prob": 0.03,
     "ocr_del_sp_prob": 0.03,
 }
+
 
 family_role_dict = {
     "name": "family_role",
@@ -669,9 +673,9 @@ phonenum_dict = {
     "type": "phone",
     "char_range": "digit",
     "depend": "state",
-    "lookup_file": "data" + os.sep + "state-areacode-lookup.tbl",
-    "area_codes": ["02", "03", "04", "07", "08"],  # Australian area codes
-    "num_digits": 8,  # For Australian phone numbers
+    "lookup_file": f"data{os.sep}state-areacode-lookup.tbl",
+    "area_codes": ["02", "03", "04", "07", "08"],
+    "num_digits": 8,
     "select_prob": 0.05,
     "depend_prob": 0.90,
     "ins_prob": 0.00,
@@ -689,6 +693,7 @@ phonenum_dict = {
     "ocr_ins_sp_prob": 0.03,
     "ocr_del_sp_prob": 0.03,
 }
+
 
 ssid_dict = {
     "name": "soc_sec_id",
@@ -800,9 +805,10 @@ current_year = time.localtime()[0]  # Alternatively set manual
 # Household freq files
 #
 household_freq_dict = {
-    "age": "data" + os.sep + "household-age-freq.csv",
-    "sex": "data" + os.sep + "household-sex-freq.csv",
+    "age": f"data{os.sep}household-age-freq.csv",
+    "sex": f"data{os.sep}household-sex-freq.csv",
 }
+
 
 # -----------------------------------------------------------------------------
 # Distribution of the number of household and family records to be generated
@@ -987,31 +993,25 @@ def error_character(input_char, char_range):
             choice_str = string.ascii_lowercase.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen letter
 
-    else:  # Both letters and digits possible
-
-        # A randomly chosen neigbouring key in the same keyboard row
-        #
-        if rand_num <= single_typo_prob["same_row"]:
-            if input_char in rows:
-                output_char = random.choice(rows[input_char])
-            else:
-                choice_str = (string.ascii_lowercase + string.digits).replace(
-                    input_char, "")
-                output_char = random.choice(choice_str)  # A randomly choosen character
-
-        # A randomly chosen neigbouring key in the same keyboard column
-        #
-        elif rand_num <= (single_typo_prob["same_row"] + single_typo_prob["same_col"]):
-            if input_char in cols:
-                output_char = random.choice(cols[input_char])
-            else:
-                choice_str = (string.ascii_lowercase + string.digits).replace(
-                    input_char, "")
-                output_char = random.choice(choice_str)  # A randomly choosen character
+    elif rand_num <= single_typo_prob["same_row"]:
+        if input_char in rows:
+            output_char = random.choice(rows[input_char])
         else:
             choice_str = (string.ascii_lowercase + string.digits).replace(
                 input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen character
+
+    elif rand_num <= (single_typo_prob["same_row"] + single_typo_prob["same_col"]):
+        if input_char in cols:
+            output_char = random.choice(cols[input_char])
+        else:
+            choice_str = (string.ascii_lowercase + string.digits).replace(
+                input_char, "")
+            output_char = random.choice(choice_str)  # A randomly choosen character
+    else:
+        choice_str = (string.ascii_lowercase + string.digits).replace(
+            input_char, "")
+        output_char = random.choice(choice_str)  # A randomly choosen character
 
     return output_char
 
@@ -1064,18 +1064,8 @@ def is_leap_year(year):
   """
 
     if year < 1600:
-        if (year % 4) != 0:
-            return 0
-        else:
-            return 1
-
-    elif (year % 4) != 0:
-        return 0
-
-    elif (year % 100) != 0:
-        return 1
-
-    elif (year % 400) != 0:
+        return 0 if (year % 4) != 0 else 1
+    elif (year % 4) != 0 or year % 100 == 0 and (year % 400) != 0:
         return 0
 
     else:
@@ -1106,7 +1096,7 @@ def epoch_to_date(daynum):
     [day, month, year] = epoch_to_date(37734)  # returns ['25','04','2003']
   """
 
-    if not (isinstance(daynum, int) or isinstance(daynum, int)):
+    if not isinstance(daynum, (int, int)):
         print(
             'Error: Input value for "daynum" is not of integer type: %s' % (str(daynum))
         )
@@ -1148,9 +1138,9 @@ def epoch_to_date(daynum):
 
     # Add up the days in the prior months
     #
-    prior_month_days = 0
-    for m in range(month - 1):
-        prior_month_days += days_in_month[leap_year_flag][m]
+    prior_month_days = sum(
+        days_in_month[leap_year_flag][m] for m in range(month - 1)
+    )
 
     day = days - prior_month_days
 
@@ -1230,9 +1220,10 @@ def date_to_epoch(day, month, year):
     for m in range(month_int - 1):
         days += days_in_month[leap_year_flag][m]
 
-    if year_int == 1582:
-        if (month_int > 10) or ((month_int == 10) and (day_int > 4)):
-            days -= 10
+    if year_int == 1582 and (
+        (month_int > 10) or ((month_int == 10) and (day_int > 4))
+    ):
+        days -= 10
 
     return days
 
@@ -1294,11 +1285,7 @@ def load_misspellings_dict(misspellings_file_name):
                     raise Exception
 
                 val_list = vals.split(",")
-                val_set = set()
-                for val in val_list:
-                    if val != "":
-                        val_set.add(val.strip())  # Remove all spaces
-
+                val_set = {val.strip() for val in val_list if val != ""}
                 # Check that all misspellings are different from the original
                 #
                 if key in val_set:
@@ -1316,18 +1303,14 @@ def load_misspellings_dict(misspellings_file_name):
 
             elif len(ll) == 1:  # Line contains only values - - - - - - - - - - - -
 
-                if key == None:
+                if key is None:
                     print('Error: No key (correct word) defined in line: "%s"' % (l))
                     raise Exception
 
                 vals = ll[0].lower()  # Get values in a string
                 val_list = vals.split(",")
 
-                val_set = set()
-                for val in val_list:
-                    if val != "":
-                        val_set.add(val.strip())  # Remove all spaces
-
+                val_set = {val.strip() for val in val_list if val != ""}
                 # Check that all misspellings are different from the original
                 #
                 if key in val_set:
@@ -1418,9 +1401,8 @@ def load_lookup_dict(dict_file_name):
                         for i in range(int(vl[1])):
                             tmp_list.insert(i, vl[0].strip())
                         lookup_dict[key] = tmp_list
-                    else:
-                        if val != "":
-                            val_set.add(val.strip())  # Remove all spaces
+                    elif val != "":
+                        val_set.add(val.strip())  # Remove all spaces
 
                 if not freq_flag:
                     # Now insert into lookup dictionary
@@ -1431,7 +1413,7 @@ def load_lookup_dict(dict_file_name):
 
             elif len(ll) == 1:  # Line contains only values - - - - - - - - - - - -
 
-                if key == None:
+                if key is None:
                     print('Error: No key (correct word) defined in line: "%s"' % (l))
                     raise Exception
 
@@ -1447,9 +1429,8 @@ def load_lookup_dict(dict_file_name):
                         for i in range(int(vl[1])):
                             tmp_list.insert(i, vl[0].strip())
                         lookup_dict[key] = tmp_list
-                    else:
-                        if val != "":
-                            val_set.add(val.strip())  # Remove all spaces
+                    elif val != "":
+                        val_set.add(val.strip())  # Remove all spaces
                 if not freq_flag:
                     # Now insert into lookupings dictionary
                     #
