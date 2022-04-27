@@ -252,7 +252,7 @@ givenname_dict = {
     "type": "freq",
     "char_range": "alpha",
     #             'freq_file':'data'+os.sep+'givenname-freq.csv',
-    "freq_file": "data-org" + os.sep + "givenname.csv",
+    "freq_file": "data" + os.sep + "givenname-freq.csv",
     "select_prob": 0.10,
     "misspell_file": "data" + os.sep + "givenname-misspell.tbl",
     "misspell_prob": 0.30,
@@ -273,7 +273,7 @@ surname_dict = {
     "type": "freq",
     "char_range": "alpha",
     #           'freq_file':'data'+os.sep+'surname-freq.csv',
-    "freq_file": "data-org" + os.sep + "surname.csv",
+    "freq_file": "data" + os.sep + "surname-freq.csv",
     "select_prob": 0.15,
     "misspell_file": "data" + os.sep + "surname-misspell.tbl",
     "misspell_prob": 0.30,
@@ -294,7 +294,7 @@ streetnumber_dict = {
     "type": "freq",
     "char_range": "digit",
     #                'freq_file':'data'+os.sep+'streetnumber-freq.csv',
-    "freq_file": "data-org" + os.sep + "streetnumber.csv",
+    "freq_file": "data" + os.sep + "streetnumber-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -313,7 +313,7 @@ address1_dict = {
     "type": "freq",
     "char_range": "alpha",
     #            'freq_file':'data'+os.sep+'address1-freq.csv',
-    "freq_file": "data-org" + os.sep + "address1.csv",
+    "freq_file": "data" + os.sep + "address1-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -335,7 +335,7 @@ address2_dict = {
     "type": "freq",
     "char_range": "alpha",
     #            'freq_file':'data'+os.sep+'address2-freq.csv',
-    "freq_file": "data-org" + os.sep + "address2.csv",
+    "freq_file": "data" + os.sep + "address2-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.04,
     "del_prob": 0.04,
@@ -354,7 +354,7 @@ suburb_dict = {
     "type": "freq",
     "char_range": "alpha",
     #          'freq_file':'data'+os.sep+'suburb-freq.csv',
-    "freq_file": "data-org" + os.sep + "suburb.csv",
+    "freq_file": "data" + os.sep + "suburb-freq.csv",
     "select_prob": 0.10,
     "misspell_file": "data" + os.sep + "suburb-misspell.tbl",
     "misspell_prob": 0.40,
@@ -375,7 +375,7 @@ postcode_dict = {
     "type": "freq",
     "char_range": "digit",
     #            'freq_file':'data'+os.sep+'postcode-freq.csv',
-    "freq_file": "data-org" + os.sep + "postcode.csv",
+    "freq_file": "data" + os.sep + "postcode-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.00,
     "del_prob": 0.00,
@@ -394,7 +394,7 @@ state_dict = {
     "type": "freq",
     "char_range": "alpha",
     #         'freq_file':'data'+os.sep+'state-freq.csv',
-    "freq_file": "data-org" + os.sep + "state.csv",
+    "freq_file": "data" + os.sep + "state-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.10,
     "del_prob": 0.10,
@@ -681,7 +681,7 @@ def error_character(input_char, char_range):
         if (input_char.isdigit()) and (rand_num <= single_typo_prob["same_row"]):
             output_char = random.choice(rows[input_char])
         else:
-            choice_str = string.replace(string.digits, input_char, "")
+            choice_str = string.digits.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen digit
 
     elif char_range == "alpha":
@@ -698,7 +698,7 @@ def error_character(input_char, char_range):
         ):
             output_char = random.choice(cols[input_char])
         else:
-            choice_str = string.replace(string.lowercase, input_char, "")
+            choice_str = string.ascii_lowercase.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen letter
 
     else:  # Both letters and digits possible
@@ -709,9 +709,8 @@ def error_character(input_char, char_range):
             if input_char in rows:
                 output_char = random.choice(rows[input_char])
             else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
+                choice_str = (string.ascii_lowercase +
+                              string.digits).replace(input_char, "")
                 output_char = random.choice(choice_str)  # A randomly choosen character
 
         # A randomly chosen neigbouring key in the same keyboard column
@@ -720,15 +719,13 @@ def error_character(input_char, char_range):
             if input_char in cols:
                 output_char = random.choice(cols[input_char])
             else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
+                choice_str = (string.ascii_lowercase +
+                              string.digits).replace(input_char, "")
                 output_char = random.choice(choice_str)  # A randomly choosen character
 
         else:
-            choice_str = string.replace(
-                string.lowercase + string.digits, input_char, ""
-            )
+            choice_str = (string.ascii_lowercase +
+                          string.digits).replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen character
 
     return output_char
@@ -872,9 +869,9 @@ def epoch_to_date(daynum):
 
     day = days - prior_month_days
 
-    day_str = string.zfill(str(day), 2)  # Add '0' if necessary
-    month_str = string.zfill(str(month), 2)  # Add '0' if necessary
-    year_str = str(year)  # Is always four digits long
+    day_str = str(day).zfill(2)  # Add '0' if necessary
+    month_str = str(month).zfill(2)  # Add '0' if necessary
+    year_str = str(year).zfill(4)  # Is always four digits long
 
     return [day_str, month_str, year_str]
 
@@ -1663,9 +1660,9 @@ while rec_cnt < num_dup_records:
             if field_dict["char_range"] == "digit":
                 field_range = string.digits
             elif field_dict["char_range"] == "alpha":
-                field_range = string.lowercase
+                field_range = string.ascii_lowercase
             elif field_dict["char_range"] == "alphanum":
-                field_range = string.digits + string.lowercase
+                field_range = string.digits + string.ascii_lowercase
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly select the number of modifications to be done in this field
