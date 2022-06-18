@@ -102,6 +102,7 @@
      - Add random word spilling between fields (similar to field swapping)
 """
 
+
 # TODO: Fix Exceptions and do f'strings'
 
 # =============================================================================
@@ -251,10 +252,9 @@ givenname_dict = {
     "name": "given_name",
     "type": "freq",
     "char_range": "alpha",
-    #             'freq_file':'data'+os.sep+'givenname-freq.csv',
-    "freq_file": "data-org" + os.sep + "givenname.csv",
+    "freq_file": f"data{os.sep}givenname-freq.csv",
     "select_prob": 0.10,
-    "misspell_file": "data" + os.sep + "givenname-misspell.tbl",
+    "misspell_file": f"data{os.sep}givenname-misspell.tbl",
     "misspell_prob": 0.30,
     "ins_prob": 0.05,
     "del_prob": 0.15,
@@ -268,14 +268,14 @@ givenname_dict = {
     "new_val_prob": 0.02,
 }
 
+
 surname_dict = {
     "name": "surname",
     "type": "freq",
     "char_range": "alpha",
-    #           'freq_file':'data'+os.sep+'surname-freq.csv',
-    "freq_file": "data-org" + os.sep + "surname.csv",
+    "freq_file": f"data{os.sep}surname-freq.csv",
     "select_prob": 0.15,
-    "misspell_file": "data" + os.sep + "surname-misspell.tbl",
+    "misspell_file": f"data{os.sep}surname-misspell.tbl",
     "misspell_prob": 0.30,
     "ins_prob": 0.10,
     "del_prob": 0.10,
@@ -289,12 +289,12 @@ surname_dict = {
     "new_val_prob": 0.02,
 }
 
+
 streetnumber_dict = {
     "name": "street_number",
     "type": "freq",
     "char_range": "digit",
-    #                'freq_file':'data'+os.sep+'streetnumber-freq.csv',
-    "freq_file": "data-org" + os.sep + "streetnumber.csv",
+    "freq_file": f"data{os.sep}streetnumber-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -308,12 +308,12 @@ streetnumber_dict = {
     "new_val_prob": 0.02,
 }
 
+
 address1_dict = {
     "name": "address_1",
     "type": "freq",
     "char_range": "alpha",
-    #            'freq_file':'data'+os.sep+'address1-freq.csv',
-    "freq_file": "data-org" + os.sep + "address1.csv",
+    "freq_file": f"data{os.sep}address1-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -327,6 +327,7 @@ address1_dict = {
     "new_val_prob": 0.01,
 }
 
+
 # Address 2 contains property and institution names - only use rarely
 # (set missing probability to a high value)
 #
@@ -334,8 +335,7 @@ address2_dict = {
     "name": "address_2",
     "type": "freq",
     "char_range": "alpha",
-    #            'freq_file':'data'+os.sep+'address2-freq.csv',
-    "freq_file": "data-org" + os.sep + "address2.csv",
+    "freq_file": f"data{os.sep}address2-freq.csv",
     "select_prob": 0.10,
     "ins_prob": 0.04,
     "del_prob": 0.04,
@@ -349,14 +349,14 @@ address2_dict = {
     "new_val_prob": 0.10,
 }
 
+
 suburb_dict = {
     "name": "suburb",
     "type": "freq",
     "char_range": "alpha",
-    #          'freq_file':'data'+os.sep+'suburb-freq.csv',
-    "freq_file": "data-org" + os.sep + "suburb.csv",
+    "freq_file": f"data{os.sep}suburb-freq.csv",
     "select_prob": 0.10,
-    "misspell_file": "data" + os.sep + "suburb-misspell.tbl",
+    "misspell_file": f"data{os.sep}suburb-misspell.tbl",
     "misspell_prob": 0.40,
     "ins_prob": 0.10,
     "del_prob": 0.15,
@@ -370,12 +370,12 @@ suburb_dict = {
     "new_val_prob": 0.01,
 }
 
+
 postcode_dict = {
     "name": "postcode",
     "type": "freq",
     "char_range": "digit",
-    #            'freq_file':'data'+os.sep+'postcode-freq.csv',
-    "freq_file": "data-org" + os.sep + "postcode.csv",
+    "freq_file": f"data{os.sep}postcode-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.00,
     "del_prob": 0.00,
@@ -389,12 +389,12 @@ postcode_dict = {
     "new_val_prob": 0.01,
 }
 
+
 state_dict = {
     "name": "state",
     "type": "freq",
     "char_range": "alpha",
-    #         'freq_file':'data'+os.sep+'state-freq.csv',
-    "freq_file": "data-org" + os.sep + "state.csv",
+    "freq_file": f"data{os.sep}state-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.10,
     "del_prob": 0.10,
@@ -407,6 +407,7 @@ state_dict = {
     "miss_prob": 0.10,
     "new_val_prob": 0.10,
 }
+
 
 dob_dict = {
     "name": "date_of_birth",
@@ -431,7 +432,7 @@ age_dict = {
     "name": "age",
     "type": "freq",
     "char_range": "digit",
-    "freq_file": "data" + os.sep + "age-freq.csv",
+    "freq_file": f"data{os.sep}age-freq.csv",
     "select_prob": 0.05,
     "ins_prob": 0.00,
     "del_prob": 0.00,
@@ -444,6 +445,7 @@ age_dict = {
     "miss_prob": 0.20,
     "new_val_prob": 0.10,
 }
+
 
 phonenum_dict = {
     "name": "phone_number",
@@ -681,7 +683,7 @@ def error_character(input_char, char_range):
         if (input_char.isdigit()) and (rand_num <= single_typo_prob["same_row"]):
             output_char = random.choice(rows[input_char])
         else:
-            choice_str = string.replace(string.digits, input_char, "")
+            choice_str = string.digits.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen digit
 
     elif char_range == "alpha":
@@ -698,38 +700,29 @@ def error_character(input_char, char_range):
         ):
             output_char = random.choice(cols[input_char])
         else:
-            choice_str = string.replace(string.lowercase, input_char, "")
+            choice_str = string.ascii_lowercase.replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen letter
 
-    else:  # Both letters and digits possible
-
-        # A randomly chosen neigbouring key in the same keyboard row
-        #
-        if rand_num <= single_typo_prob["same_row"]:
-            if input_char in rows:
-                output_char = random.choice(rows[input_char])
-            else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
-                output_char = random.choice(choice_str)  # A randomly choosen character
-
-        # A randomly chosen neigbouring key in the same keyboard column
-        #
-        elif rand_num <= (single_typo_prob["same_row"] + single_typo_prob["same_col"]):
-            if input_char in cols:
-                output_char = random.choice(cols[input_char])
-            else:
-                choice_str = string.replace(
-                    string.lowercase + string.digits, input_char, ""
-                )
-                output_char = random.choice(choice_str)  # A randomly choosen character
-
+    elif rand_num <= single_typo_prob["same_row"]:
+        if input_char in rows:
+            output_char = random.choice(rows[input_char])
         else:
-            choice_str = string.replace(
-                string.lowercase + string.digits, input_char, ""
-            )
+            choice_str = (string.ascii_lowercase +
+                          string.digits).replace(input_char, "")
             output_char = random.choice(choice_str)  # A randomly choosen character
+
+    elif rand_num <= (single_typo_prob["same_row"] + single_typo_prob["same_col"]):
+        if input_char in cols:
+            output_char = random.choice(cols[input_char])
+        else:
+            choice_str = (string.ascii_lowercase +
+                          string.digits).replace(input_char, "")
+            output_char = random.choice(choice_str)  # A randomly choosen character
+
+    else:
+        choice_str = (string.ascii_lowercase +
+                      string.digits).replace(input_char, "")
+        output_char = random.choice(choice_str)  # A randomly choosen character
 
     return output_char
 
@@ -782,18 +775,8 @@ def is_leap_year(year):
   """
 
     if year < 1600:
-        if (year % 4) != 0:
-            return 0
-        else:
-            return 1
-
-    elif (year % 4) != 0:
-        return 0
-
-    elif (year % 100) != 0:
-        return 1
-
-    elif (year % 400) != 0:
+        return 0 if (year % 4) != 0 else 1
+    elif (year % 4) != 0 or year % 100 == 0 and (year % 400) != 0:
         return 0
 
     else:
@@ -824,7 +807,7 @@ def epoch_to_date(daynum):
     [day, month, year] = epoch_to_date(37734)  # returns ['25','04','2003']
   """
 
-    if not (isinstance(daynum, int) or isinstance(daynum, int)):
+    if not isinstance(daynum, (int, int)):
         print(
             'Error: Input value for "daynum" is not of integer type: %s' % (str(daynum))
         )
@@ -866,15 +849,15 @@ def epoch_to_date(daynum):
 
     # Add up the days in the prior months
     #
-    prior_month_days = 0
-    for m in range(month - 1):
-        prior_month_days += days_in_month[leap_year_flag][m]
+    prior_month_days = sum(
+        days_in_month[leap_year_flag][m] for m in range(month - 1)
+    )
 
     day = days - prior_month_days
 
-    day_str = string.zfill(str(day), 2)  # Add '0' if necessary
-    month_str = string.zfill(str(month), 2)  # Add '0' if necessary
-    year_str = str(year)  # Is always four digits long
+    day_str = str(day).zfill(2)  # Add '0' if necessary
+    month_str = str(month).zfill(2)  # Add '0' if necessary
+    year_str = str(year).zfill(4)  # Is always four digits long
 
     return [day_str, month_str, year_str]
 
@@ -948,9 +931,10 @@ def date_to_epoch(day, month, year):
     for m in range(month_int - 1):
         days += days_in_month[leap_year_flag][m]
 
-    if year_int == 1582:
-        if (month_int > 10) or ((month_int == 10) and (day_int > 4)):
-            days -= 10
+    if year_int == 1582 and (
+        (month_int > 10) or ((month_int == 10) and (day_int > 4))
+    ):
+        days -= 10
 
     return days
 
@@ -1012,11 +996,7 @@ def load_misspellings_dict(misspellings_file_name):
                     raise Exception
 
                 val_list = vals.split(",")
-                val_set = set()
-                for val in val_list:
-                    if val != "":
-                        val_set.add(val.strip())  # Remove all spaces
-
+                val_set = {val.strip() for val in val_list if val != ""}
                 # Check that all misspellings are different from the original
                 #
                 if key in val_set:
@@ -1034,18 +1014,14 @@ def load_misspellings_dict(misspellings_file_name):
 
             elif len(ll) == 1:  # Line contains only values - - - - - - - - - - - -
 
-                if key == None:
+                if key is None:
                     print('Error: No key (correct word) defined in line: "%s"' % (l))
                     raise Exception
 
                 vals = ll[0].lower()  # Get values in a string
                 val_list = vals.split(",")
 
-                val_set = set()
-                for val in val_list:
-                    if val != "":
-                        val_set.add(val.strip())  # Remove all spaces
-
+                val_set = {val.strip() for val in val_list if val != ""}
                 # Check that all misspellings are different from the original
                 #
                 if key in val_set:
@@ -1096,7 +1072,7 @@ def random_select(prob_dist_list):
 # Start main program
 
 if len(sys.argv) != 8:
-    print("Seven arguments needed with %s:" % (sys.argv[0]))
+    print(f"Seven arguments needed with {sys.argv[0]}:")
     print("  - Output file name")
     print("  - Number of original records")
     print("  - Number of duplicate records")
@@ -1144,7 +1120,7 @@ if max_num_record_modifi < max_num_field_modifi:
     sys.exit()
 
 if prob_distribution not in ["uni", "poi", "zip"]:
-    print("Error: Illegal probability distribution: %s" % (sys.argv[7]))
+    print(f"Error: Illegal probability distribution: {sys.argv[7]}")
     print('       Must be one of: "uniform", "poisson", or "zipf"')
     sys.exit()
 
@@ -1171,10 +1147,7 @@ prob_names = [
 
 select_prob_sum = 0.0  # Sum over all select probabilities
 
-# Check if all defined field dictionaries have the necessary keys
-#
-i = 0  # Loop counter
-for field_dict in field_list:
+for i, field_dict in enumerate(field_list):
 
     if "name" not in field_dict:
         print("Error: No field name given for field dictionary")
@@ -1205,7 +1178,7 @@ for field_dict in field_list:
             raise Exception
 
     elif field_dict["type"] == "date":
-        if not ("start_date" in field_dict and "end_date" in field_dict):
+        if "start_date" not in field_dict or "end_date" not in field_dict:
             print('Error: Field of type "date" has no start and/or end date given')
             raise Exception
 
@@ -1220,7 +1193,7 @@ for field_dict in field_list:
             field_list[i] = field_dict
 
     elif field_dict["type"] == "phone":
-        if not ("area_codes" in field_dict and "num_digits" in field_dict):
+        if "area_codes" not in field_dict or "num_digits" not in field_dict:
             print(
                 'Error: Field of type "phone" has no area codes and/or number '
                 + "of digits given"
@@ -1232,22 +1205,22 @@ for field_dict in field_list:
                 field_dict["area_codes"] = [field_dict["area_codes"]]  # Make it a list
             if not isinstance(field_dict["area_codes"], list):
                 print(
-                    "Error: Area codes given are not a string or a list: %s"
-                    % (str(field_dict["area_codes"]))
+                    f'Error: Area codes given are not a string or a list: {str(field_dict["area_codes"])}'
                 )
+
                 raise Exception
 
             if not isinstance(field_dict["num_digits"], int):
                 print(
-                    "Error: Number of digits given is not an integer: %s (%s)"
-                    % (str(field_dict["num_digits"]), type(field_dict["num_digits"]))
+                    f'Error: Number of digits given is not an integer: {str(field_dict["num_digits"])} ({type(field_dict["num_digits"])})'
                 )
+
                 raise Exception
 
             field_list[i] = field_dict
 
     elif field_dict["type"] == "ident":
-        if not ("start_id" in field_dict and "end_id" in field_dict):
+        if "start_id" not in field_dict or "end_id" not in field_dict:
             print(
                 'Error: Field of type "iden" has no start and/or end '
                 + "identification number given"
@@ -1299,8 +1272,6 @@ for field_dict in field_list:
     field_dict["prob_list"] = prob_list
     field_list[i] = field_dict  # Store dictionary back into dictionary list
 
-    i += 1
-
 if abs(select_prob_sum - 1.0) > 0.001:
     print("Error: Field select probabilities do not sum to 1.0: %f" % (select_prob_sum))
     raise Exception
@@ -1332,10 +1303,7 @@ if prob_distribution == "uni":  # Uniform distribution of duplicates - - - -
 elif prob_distribution == "poi":  # Poisson distribution of duplicates - - -
 
     def fac(n):  # Factorial of an integer number (recursive calculation)
-        if n > 1.0:
-            return n * fac(n - 1.0)
-        else:
-            return 1.0
+        return n * fac(n - 1.0) if n > 1.0 else 1.0
 
     poisson_num = []  # A list of poisson numbers
     poisson_sum = 0.0  # The sum of all poisson number
@@ -1663,9 +1631,9 @@ while rec_cnt < num_dup_records:
             if field_dict["char_range"] == "digit":
                 field_range = string.digits
             elif field_dict["char_range"] == "alpha":
-                field_range = string.lowercase
+                field_range = string.ascii_lowercase
             elif field_dict["char_range"] == "alphanum":
-                field_range = string.digits + string.lowercase
+                field_range = string.digits + string.ascii_lowercase
 
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             # Randomly select the number of modifications to be done in this field
